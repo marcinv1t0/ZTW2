@@ -11,10 +11,9 @@
                         <div class="form-group">
                             <label for="make">Marka:</label>
                             <select class="form-control" id="make">
-                                <option>Audi</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let make of makes" [value]="make.value">
+                                    {{make.display}}
+                                </option>
                             </select>
                             <label for="year">Rok produkcji:</label>
                             <input type="text" class="form-control" id="year" placeholder="Podaj rok produkcji">
@@ -25,20 +24,26 @@
                         <div class="form-group">
                             <label for="model">Model:</label>
                             <select class="form-control" id="model">
-                                <option>A4</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let model of models" [value]="model.value">
+                                    {{model.display}}
+                                </option>
                             </select>
 
                             <label for="mileage">Przebieg:</label>
-                            <input type="text" class="form-control" id="mileage" placeholder="Podaj przebieg...">
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="mileage" placeholder="Podaj przebieg...">
+                                <span class="input-group-addon" id="basic-addon1">km</span>
+                            </div>
+                            
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="price">Cena:</label>
-                            <input type="text" class="form-control" id="price" placeholder="Podaj cenę...">
+                            <div class="input-group">
+                               <input type="text" class="form-control" id="price" placeholder="Podaj cenę...">
+                                <span class="input-group-addon" id="basic-addon1">zł</span>
+                            </div>
                         </div>
                     </div>
 
@@ -66,32 +71,29 @@
                         <div class="form-group">
                             <label for="fuel">Paliwo:</label>
                             <select class="form-control " id="fuel">
-                                <option>Benzyna</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let fuel of fuels" [value]="fuel.value">
+                                    {{fuel.display}}
+                                </option>
                             </select>
 
                             <label for="drive">Rodzaj napędu:</label>
                             <select class="form-control " id="drive">
-                                <option>Benzyna</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let drive of drives" [value]="drive.value">
+                                    {{drive.display}}
+                                </option>
                             </select>
 
                             <label for="seatsNb">Liczba miejsc:</label>
                             <select class="form-control " id="seatsNb">
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let seat of seats" [value]="seat.value">
+                                    {{seat.display}}
+                                </option>
                             </select>
                             <label for="color">Kolor:</label>
                             <select class="form-control " id="color">
-                                <option>Benzyna</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let color of colors" [value]="color.value">
+                                    {{color.display}}
+                                </option>
                             </select>
 
                         </div>
@@ -99,21 +101,23 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="displacement">Pojemność:</label>
-                            <input type="text" class="form-control" id="displacement" placeholder="Podaj pojemność...">
+                            
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="displacement" placeholder="Podaj pojemność...">
+                                <span class="input-group-addon" id="basic-addon1">ccm</span>
+                            </div>
 
                             <label for="category">Typ nadwozia:</label>
                             <select class="form-control " id="category">
-                                <option>Sedan</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let type of types" [value]="type.value">
+                                    {{type.display}}
+                                </option>
                             </select>
                             <label for="doorsNb">Liczba drzwi:</label>
                             <select class="form-control " id="doorsNb">
-                                <option>Sedan</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                                <option *ngFor="let door of dors" [value]="door.value">
+                                    {{door.display}}
+                                </option>
                             </select>
 
 
