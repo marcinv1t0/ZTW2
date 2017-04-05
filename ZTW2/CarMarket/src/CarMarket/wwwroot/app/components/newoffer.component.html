@@ -23,7 +23,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="model">Model:</label>
-                            <select class="form-control" id="model" [(ngModel)]="modelSelect" name="model">
+                            <select class="form-control" id="model" [(ngModel)]="modelSelect" name="model" [disabled]="!makeSelect">
                                 <option *ngFor="let opt of hack(makeSelect?.makeModels)" [ngValue]="opt">
                                     {{opt.display}}
                                 </option>
