@@ -7,16 +7,37 @@
 })
 export class NewOfferComponent {
 
+    hack(val) {
+        console.log('Before:');
+        console.log(val);
+        return val;
+       
+    }
+
     public makes = [
-        { value: 'audi', display: 'Audi' },
-        { value: 'aston', display: 'Aston Martin' },
-        { value: 'bentley', display: 'Bentley' },
-        { value: 'cadillac', display: 'Cadillac' },
-        { value: 'kia', display: 'Kia' },
-        { value: 'mercedes', display: 'Mercedes' },
-        { value: 'porsche', display: 'Porsche' },        
-        { value: 'subaru', display: 'Subaru' },
-        { value: 'volkswagen', display: 'Volkswagen' }
+        {
+            car: { value: 'audi', display: 'Audi' }, makeModels : [{ value: 'A4', display: 'A4' },
+                { value: 'A5', display: 'A5' },
+                { value: 'A7', display: 'A7' }]
+        },
+        {
+            car: { value: 'bmw', display: 'BMW' }, makeModels: [{ value: 'Seria 3', display: 'Seria 3' },
+            { value: 'Seria 5', display: 'Seria 5' },
+            { value: 'Seria 7', display: 'Seria 7' }]
+        }
+
+    ];
+
+    public mercedes = [
+        { value: 'A-klasa', display: 'A-klasa' },
+        { value: 'B-klasa', display: 'B-klasa' }
+
+    ];
+
+    public aston = [
+        { value: 'DB-8', display: 'DB-8' },
+        { value: 'DB-9', display: 'Db-9' }
+
     ];
 
     public fuels = [

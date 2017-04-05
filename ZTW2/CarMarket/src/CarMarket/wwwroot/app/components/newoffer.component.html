@@ -10,9 +10,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="make">Marka:</label>
-                            <select class="form-control" id="make">
-                                <option *ngFor="let make of makes" [value]="make.value">
-                                    {{make.display}}
+                            <select class="form-control" id="make" [(ngModel)]="makeSelect" name="make">
+                                <option *ngFor="let make of makes" [ngValue]="make">
+                                    {{make.car.display}}
                                 </option>
                             </select>
                             <label for="year">Rok produkcji:</label>
@@ -23,10 +23,11 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="model">Model:</label>
-                            <select class="form-control" id="model">
-                                <option *ngFor="let model of models" [value]="model.value">
-                                    {{model.display}}
+                            <select class="form-control" id="model" [(ngModel)]="modelSelect" name="model">
+                                <option *ngFor="let opt of hack(makeSelect?.makeModels)" [ngValue]="opt">
+                                    {{opt.display}}
                                 </option>
+                                
                             </select>
 
                             <label for="mileage">Przebieg:</label>
@@ -148,11 +149,28 @@
                 </div>
 
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Dodaj zdjęcia</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <input id="input-44" name="input44[]" type="file" multiple class="file file-loading">
+                        
+                        <div id="errorBlock" class="help-block"></div>
+                        
+                    </div>
+
+
+                </div>
+
+            </div>
+            <button type="button" class="btn btn-default btn-md pull-right">
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Dodaj ogłoszenie
+            </button>
 
         </form>
-        <button type="button" class="btn btn-default btn-md pull-right">
-            <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Dodaj ogłoszenie
-        </button>
+       
 
     </div>
 </div>
