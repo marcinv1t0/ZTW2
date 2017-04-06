@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace CarMarket.Entities
 {
 
-        public class View
-        {
-            public int ViewId { get; set; }
+        public class View : IEntityBase
+    {
+            public int Id { get; set; }
             public int? OfferId { get; set; }
             public Offer Offer { get; set; }
             public string IP { get; set; }

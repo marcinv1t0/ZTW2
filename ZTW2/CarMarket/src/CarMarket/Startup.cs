@@ -65,6 +65,7 @@ namespace CarMarket
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<ILoggingRepository, LoggingRepository>();
+            services.AddScoped<IOfferRepository, OfferRepository>();
 
             // Services
             services.AddScoped<IMembershipService, MembershipService>();

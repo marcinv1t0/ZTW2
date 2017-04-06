@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace CarMarket.Entities
 {
-    public class Favorite
+    public class Favorite : IEntityBase
     {
-        public int FavoriteId { get; set; }
+        public int Id { get; set; }
         public int? UserId { get; set; }
         public User User { get; set; }
         public int? OfferId { get; set; }
