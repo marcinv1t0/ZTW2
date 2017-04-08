@@ -16,10 +16,11 @@ import { MembershipService } from '../core/services/membership.service';
     templateUrl: './app/components/newoffer.component.html',
     styles: ['app/components/newoffer.css']
 })
-export class NewOfferComponent  implements OnInit {
+export class NewOfferComponent implements OnInit {
     private _offersAPI: string = 'api/offer/';
     private _newOffer: Offer;
     private _user: User;
+   // public fuels: Array<{ text: string }> = [{ text: "Benzyna" }, { text: "LPG" }]; 
 
     constructor(public offersService: OfferService,
         public utilityService: UtilityService,
@@ -77,6 +78,10 @@ export class NewOfferComponent  implements OnInit {
         }
     }
 
+    /* onSelect(fuel): void {
+        this._newOffer.Fuel = fuel;
+    }
+    */
 
    hack(val) {
         console.log('Before:');
@@ -111,6 +116,7 @@ export class NewOfferComponent  implements OnInit {
 
     ];
 
+    
     public fuels = [
         { value: 'benzyna', display: 'Benzyna' },
         { value: 'benzynalpg', display: 'Benzyna + LPG' },
