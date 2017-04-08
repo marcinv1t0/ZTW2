@@ -23,15 +23,15 @@ namespace CarMarket.Infrastructure.Services
             return _offerRepository.GetSingle(offerId);
         }
 
-        public List<Offer> GetUsersOffers(int userId)
+        public List<Offer> GetUsersOffers(User user)
         {
-            return (List<Offer>)_offerRepository.GetUsersOffers(userId);
+            return (List<Offer>)_offerRepository.GetUsersOffers(user);
         }
-        public Offer CreateOffer(int userID, string model, int year, int mileage, string description, double price, string color, string fuel, string category, int seatsNb, int doorsNb, int displacement, string gearbox, string drive, bool damaged, bool abs, bool airbags, bool centrallock, bool aircond, DateTime starttime, DateTime endtime, string status, string make)
+        public Offer CreateOffer(string username, string model, int year, int mileage, string description, double price, string color, string fuel, string category, int seatsNb, int doorsNb, int displacement, string gearbox, string drive, bool damaged, bool abs, bool airbags, bool centrallock, bool aircond, DateTime starttime, DateTime endtime, string status, string make, string photouri)
         {
             var offer = new Offer()
             {
-                UserId = userID,
+                Username = username,
                 Model = model,
                 Year = year,
                 Mileage = mileage,
@@ -53,8 +53,8 @@ namespace CarMarket.Infrastructure.Services
                 StartTime = starttime,
                 EndTime = endtime,
                 Status = status,
-                Make = make
-                
+                Make = make,
+                PhotoUri = photouri
               
             };
 

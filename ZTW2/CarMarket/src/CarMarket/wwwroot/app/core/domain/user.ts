@@ -4,9 +4,10 @@
     RememberMe: boolean;
 
     constructor(username: string,
-        password: string) {
+        password: string ) {
         this.Username = username;
         this.Password = password;
         this.RememberMe = false;
     }
+
 }

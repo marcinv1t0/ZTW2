@@ -10,6 +10,7 @@ using CarMarket.Infrastructure.Mappings;
 using System.Security.Claims;
 using System.IO;
 using Newtonsoft.Json.Serialization;
+using CarMarket.Infrastructure.Services.Abstract;
 
 namespace CarMarket
 {
@@ -70,6 +71,7 @@ namespace CarMarket
             // Services
             services.AddScoped<IMembershipService, MembershipService>();
             services.AddScoped<IEncryptionService, EncryptionService>();
+            services.AddScoped<IOfferService, OfferService>();
 
             services.AddAuthentication();
 

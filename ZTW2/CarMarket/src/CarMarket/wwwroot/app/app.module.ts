@@ -18,6 +18,7 @@ import { DataService } from './core/services/data.service';
 import { MembershipService } from './core/services/membership.service';
 import { UtilityService } from './core/services/utility.service';
 import { NotificationService } from './core/services/notification.service';
+import { OfferService } from './core/services/offer.service';
 
 class AppBaseRequestOptions extends BaseRequestOptions {
     headers: Headers = new Headers();
@@ -38,7 +39,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         AccountModule
     ],
     declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, AlbumsComponent, NewOfferComponent],
-    providers: [DataService, MembershipService, UtilityService, NotificationService,
+    providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],
     bootstrap: [AppComponent]

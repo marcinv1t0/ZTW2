@@ -24,6 +24,8 @@ namespace CarMarket.Controllers
         ILoggingRepository _loggingRepository;
         IOfferService _offerService;
         
+
+        
         public OfferController(IAuthorizationService authorizationService,
                                 IOfferRepository offerRepository,
                                 ILoggingRepository loggingRepository,
@@ -53,7 +55,7 @@ namespace CarMarket.Controllers
 
 
                     _offers = _offerRepository
-                        .AllIncluding(a => a.UserId)
+                        .AllIncluding(a => a.Username)
                         .OrderBy(a => a.Id)
                         .Skip(currentPage * currentPageSize)
                         .Take(currentPageSize)
@@ -86,19 +88,19 @@ namespace CarMarket.Controllers
             return new ObjectResult(pagedSet);
         }
 
-        [Route("putoffer")]
+       // [Route("offer")]
         [HttpPost]
-
-        public IActionResult PutOffer([FromBody] OfferViewModel offer)
+        public IActionResult Post([FromBody] OfferViewModel offer)
         {
             IActionResult _result = new ObjectResult(false);
             GenericResult _offerResult = null;
 
             try
             {
-                Offer _offer = _offerService.CreateOffer(offer.UserId, offer.Model, offer.Year, offer.Mileage, offer.Description, offer.Price, offer.Color, offer.Fuel,
+
+                Offer _offer = _offerService.CreateOffer(offer.Username, offer.Model, offer.Year, offer.Mileage, offer.Description, offer.Price, offer.Color, offer.Fuel,
                     offer.Category, offer.SeatsNb, offer.DoorsNb, offer.Displacement, offer.Gearbox, offer.Drive, offer.Damaged, offer.ABS, offer.Airbags, offer.CentralLock, offer.AirCond,
-                    offer.StartTime, offer.EndTime, offer.Status, offer.Make);
+                    offer.StartTime, offer.EndTime, offer.Status, offer.Make, offer.PhotoUri);
 
                 if(_offer != null)
                 {

@@ -1,6 +1,6 @@
 ﻿export class Offer {
-    Id: number;
-    UserID: number;
+    //Id: number;
+    Username: string;
     Model: string;
     Year: number;
     Mileage: number;
@@ -23,9 +23,10 @@
     EndTime: Date;
     Status: string;
     Make: string;
+    PhotoUri: string;
 
-    constructor(id: number,
-        userID: number,
+    constructor(//id: number,
+        username: string,
         model: string,
         year: number,
         mileage: number,
@@ -47,9 +48,10 @@
         starttime: Date,
         endtime: Date,
         status: string,
-        make: string) {
-        this.Id = id;
-        this.UserID = userID;
+        make: string,
+        photouri: string) {
+        //this.Id = id;
+        this.Username = username;
         this.Model = model;
         this.Year = year;
         this.Mileage = mileage;
@@ -72,6 +74,7 @@
         this.EndTime = endtime;
         this.Status = status;
         this.Make = make;
+        this.PhotoUri = photouri;
     }
 
 

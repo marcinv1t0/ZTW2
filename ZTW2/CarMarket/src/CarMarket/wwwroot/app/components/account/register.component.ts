@@ -23,6 +23,7 @@ export class RegisterComponent implements OnInit {
     }
 
     register(): void {
+        debugger;
         var _registrationResult: OperationResult = new OperationResult(false, '');
         this.membershipService.register(this._newUser)
             .subscribe(res => {

@@ -20,6 +20,6 @@ namespace CarMarket.Infrastructure.Repositories
     public interface IUserRoleRepository : IEntityBaseRepository<UserRole> { }
 
     public interface IOfferRepository : IEntityBaseRepository<Offer> {
-        IEnumerable<Offer> GetUsersOffers(int userId);
+        IEnumerable<Offer> GetUsersOffers(User user);
     }
 }

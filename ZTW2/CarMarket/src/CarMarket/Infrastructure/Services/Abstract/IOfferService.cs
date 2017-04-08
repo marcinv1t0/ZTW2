@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarMarket.Entities;
-using System.Collections.Generic;
+
 
 namespace CarMarket.Infrastructure.Services.Abstract
 {
     public interface IOfferService
     {
         Offer CreateOffer(
-        int userID,
+        string username,
         string model,
         int year,
         int mileage,
@@ -32,9 +32,10 @@ namespace CarMarket.Infrastructure.Services.Abstract
         DateTime starttime,
         DateTime endtime,
         string status,
-        string make);
+        string make,
+        string photoUri);
         Offer GetOffer(int offerId);
 
-        List<Offer> GetUsersOffers(int userId);
+        List<Offer> GetUsersOffers(User user);
     }
 }

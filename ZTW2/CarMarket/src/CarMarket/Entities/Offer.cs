@@ -10,8 +10,8 @@ namespace CarMarket.Entities
         public Offer() { }
         public int Id { get; set; }
 
-        public int UserId { get; set; }
-        public User User { get; set; }
+        public string Username { get; set; }
+        public virtual User User { get; set; }
 
         public string Model { get; set; }
         public int Year { get; set; }
@@ -35,8 +35,9 @@ namespace CarMarket.Entities
         public DateTime EndTime { get; set; }
         public string Status { get; set; }
         public string Make { get; set; }
-        public Album Album { get; set;  }
-        public int AlbumID { get; set; }
+       /* public Album Album { get; set;  }
+        public int AlbumID { get; set; }*/
+        public string PhotoUri { get; set; }
 
     }
 }

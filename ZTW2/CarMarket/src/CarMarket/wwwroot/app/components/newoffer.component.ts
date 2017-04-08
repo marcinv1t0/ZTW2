@@ -1,19 +1,84 @@
-﻿import { Component } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Offer } from '../core/domain/offer';
+import { User } from '../core/domain/user';
 import { OperationResult } from '../core/domain/operationResult';
 import { DataService } from '../core/services/data.service';
+import { OfferService } from '../core/services/offer.service';
+import { UtilityService } from '../core/services/utility.service';
+import { Paginated } from '../core/common/paginated';
 import { NotificationService } from '../core/services/notification.service';
+import { MembershipService } from '../core/services/membership.service';
 
 @Component({
     selector: 'newoffer',
-    providers: [DataService, NotificationService],
+    providers: [OfferService, NotificationService],
     templateUrl: './app/components/newoffer.component.html',
     styles: ['app/components/newoffer.css']
 })
-export class NewOfferComponent {
+export class NewOfferComponent  implements OnInit {
+    private _offersAPI: string = 'api/offer/';
+    private _newOffer: Offer;
+    private _user: User;
 
-    hack(val) {
+    constructor(public offersService: OfferService,
+        public utilityService: UtilityService,
+        public notificationService: NotificationService,
+        public membershipService: MembershipService) {
+
+    }
+
+
+    ngOnInit() {
+        this._user = this.membershipService.getLoggedInUser();
+        //var userId =
+        var now = new Date();
+        var end = new Date();
+        end.setDate(now.getDate() + 7);
+        //end.setDate(end.getDate() + 7);
+            //this.photosService.set(this._photosAPI, 12);
+            //this.getPhotos();
+       //this.offersService.set(this._offersAPI);
+        // this._newOffer = new Offer(null, 1, '', null, null, '', null, '', '', '', null, null, null, '', '', false, false, false, false, false, now, end, '', '', ''); 
+        //this._newOffer = new Offer(null, this._user.Username, '', null, null, '', null, '', '', '', null, null, null, '', '', false, false, false, false, false, now, end, '', '', '');      
+        this._newOffer = new Offer(this._user.Username, '', null, null, '', null, '', '', '', null, null, null, '', '', false, false, false, false, false, now, end, '', '', '');      
+
+    }
+
+    submit(): void {
+        debugger;
+        var _registrationResult: OperationResult = new OperationResult(false, '');
+        this.offersService.register(this._newOffer)
+            .subscribe(res => {
+                _registrationResult.Succeeded = res.Succeeded;
+                _registrationResult.Message = res.Message;
+
+            },
+            error => console.error('Error: ' + error),
+            () => {
+                if (_registrationResult.Succeeded) {
+                    this.notificationService.printSuccessMessage('Oferta dodana pomyślnie');
+                    //this.router.navigate(['account/login']);
+                }
+                else {
+                    this.notificationService.printErrorMessage(_registrationResult.Message);
+                }
+            });
+    };
+
+    isUserLoggedIn(): boolean {
+        return this.membershipService.isUserAuthenticated();
+    }
+
+    getUserName(): string {
+        if (this.isUserLoggedIn()) {
+            this._user = this.membershipService.getLoggedInUser();
+            return this._user.Username;
+        }
+    }
+
+
+   hack(val) {
         console.log('Before:');
         console.log(val);
         return val;
@@ -71,8 +136,8 @@ export class NewOfferComponent {
     ];
 
     public doors = [
-        { value: '2/3', display: '2/3' },
-        { value: '4/5', display: '4/5' }
+        { value: '3', display: '3' },
+        { value: '5', display: '5' }
     ];
 
     public colors = [
@@ -100,7 +165,4 @@ export class NewOfferComponent {
 
 
 
-    constructor() {
-
-    }
 }
