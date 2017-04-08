@@ -20,6 +20,7 @@ export class NewOfferComponent implements OnInit {
     private _offersAPI: string = 'api/offer/';
     private _newOffer: Offer;
     private _user: User;
+    private models = []; 
    // public fuels: Array<{ text: string }> = [{ text: "Benzyna" }, { text: "LPG" }]; 
 
     constructor(public offersService: OfferService,
@@ -46,8 +47,24 @@ export class NewOfferComponent implements OnInit {
 
     }
 
+    dropChange(val: any) {
+        console.log(val);
+
+        if (val == "Audi") {
+            this.models = ["A3", "A4", "A8"];
+        }
+        else if (val == "BMW") {
+            this.models = ["Seria 3", "Seria 5", "Seria 7"];
+        }
+        else {
+            this.models = [];
+        }
+    }
+
+
     submit(): void {
         debugger;
+        
         var _registrationResult: OperationResult = new OperationResult(false, '');
         this.offersService.register(this._newOffer)
             .subscribe(res => {
@@ -91,31 +108,10 @@ export class NewOfferComponent implements OnInit {
     }
 
     public makes = [
-        {
-            car: { value: 'audi', display: 'Audi' }, makeModels : [{ value: 'A4', display: 'A4' },
-                { value: 'A5', display: 'A5' },
-                { value: 'A7', display: 'A7' }]
-        },
-        {
-            car: { value: 'bmw', display: 'BMW' }, makeModels: [{ value: 'Seria 3', display: 'Seria 3' },
-            { value: 'Seria 5', display: 'Seria 5' },
-            { value: 'Seria 7', display: 'Seria 7' }]
-        }
+        { value: 'audi', display: 'Audi' },
+        { value: 'bmw', display: 'BMW' }
 
     ];
-
-    public mercedes = [
-        { value: 'A-klasa', display: 'A-klasa' },
-        { value: 'B-klasa', display: 'B-klasa' }
-
-    ];
-
-    public aston = [
-        { value: 'DB-8', display: 'DB-8' },
-        { value: 'DB-9', display: 'Db-9' }
-
-    ];
-
     
     public fuels = [
         { value: 'benzyna', display: 'Benzyna' },
@@ -167,6 +163,11 @@ export class NewOfferComponent implements OnInit {
         { value: 'terenowy', display: 'Terenowy' },
         { value: 'VAN', display: 'VAN' },
         { value: 'SUV', display: 'SUV' }
+    ];
+
+    public gearboxes = [
+        { value: 'manualna', display: 'Manualna' },
+        { value: 'automatyczna', display: 'Automatyczna' }
     ];
 
 

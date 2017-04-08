@@ -10,9 +10,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="make">Marka:</label>
-                            <select class="form-control" id="make" [(ngModel)]="makeSelect" name="make">
-                                <option *ngFor="let make of makes" [ngValue]="make">
-                                    {{make.car.display}}
+                            <select class="form-control" id="make" [(ngModel)]="_newOffer.Make" name="make" (change)="dropChange($event.target.value)">
+                                <option *ngFor="let make of makes" [value]="make.display">
+                                    {{make.display}}
                                 </option>
                             </select>
                             <label for="year">Rok produkcji:</label>
@@ -23,9 +23,9 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="model">Model:</label>
-                            <select class="form-control" id="model" [(ngModel)]="modelSelect" name="model" [disabled]="!makeSelect">
-                                <option *ngFor="let opt of makeselect?.makeModels" [ngValue]="opt">
-                                    {{opt.display}}
+                            <select class="form-control" id="model" [(ngModel)]="_newOffer.Model" name="model" [disabled]="!_newOffer.Make">
+                                <option *ngFor="let opt of models" [value]="opt">
+                                    {{opt}}
                                 </option>                           
                             </select>
 
@@ -81,18 +81,20 @@
                                 </option>
                             </select>
 
+                            <label for="drive">Skrzynia biegów:</label>
+                            <select class="form-control " id="gearbox" name="gearbox" [(ngModel)]="_newOffer.Gearbox">
+                                <option *ngFor="let gb of gearboxes" [value]="gb.display">
+                                    {{gb.display}}
+                                </option>
+                            </select>
+
                             <label for="seatsNb">Liczba miejsc:</label>
                             <select class="form-control " id="seatsNb" name="seatsNb" [(ngModel)]="_newOffer.SeatsNb">
                                 <option *ngFor="let seat of seats" [value]="seat.display">
                                     {{seat.display}}
                                 </option>
                             </select>
-                            <label for="color">Kolor:</label>
-                            <select class="form-control " id="color" name="color" [(ngModel)]="_newOffer.Color">
-                                <option *ngFor="let color of colors" [value]="color.display">
-                                    {{color.display}}
-                                </option>
-                            </select>
+                            
 
                         </div>
                     </div>
@@ -115,6 +117,12 @@
                             <select class="form-control " id="doorsNb" name="doorsNb" [(ngModel)]="_newOffer.DoorsNb">
                                 <option *ngFor="let door of doors" [value]="door.display">
                                     {{door.display}}
+                                </option>
+                            </select>
+                            <label for="color">Kolor:</label>
+                            <select class="form-control " id="color" name="color" [(ngModel)]="_newOffer.Color">
+                                <option *ngFor="let color of colors" [value]="color.display">
+                                    {{color.display}}
                                 </option>
                             </select>
                         </div>
