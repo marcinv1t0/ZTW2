@@ -10,6 +10,7 @@ import { AppComponent }  from './app.component';
 import { AlbumPhotosComponent } from './components/album-photos.component';
 import { HomeComponent } from './components/home.component';
 import { NewOfferComponent } from './components/newoffer.component';
+import { OffersComponent } from './components/offers.component';
 import { PhotosComponent } from './components/photos.component';
 import { AlbumsComponent } from './components/albums.component';
 import { routing } from './routes';
@@ -38,7 +39,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         routing,
         AccountModule
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, AlbumsComponent, NewOfferComponent],
+    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, AlbumsComponent, NewOfferComponent, OffersComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

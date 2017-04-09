@@ -13,8 +13,8 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                <li >
-                    <a><span class="glyphicon glyphicon-th-list"></span>&nbsp;Oferty</a>
+                <li >                  
+                    <a class="navbar-brand" [routerLink]="['offers']"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Oferty</a>
                 </li>
                 <li *ngIf="isUserLoggedIn()">
                     <a class="navbar-brand" [routerLink]="['newoffer']"><span class="glyphicon glyphicon-plus"></span>&nbsp;Dodaj ofertę</a>
