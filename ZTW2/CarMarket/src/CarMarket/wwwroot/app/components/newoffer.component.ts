@@ -56,6 +56,14 @@ export class NewOfferComponent implements OnInit {
         else if (val == "BMW") {
             this.models = ["Seria 3", "Seria 5", "Seria 7"];
         }
+        else if (val == "Mercedes") {
+            this.models = ["W211", "W222", "W223"];
+        }
+        else if (val == "Aston Martin") {
+            this.models = ["DB7", "DB8", "DB9"];
+        } else if (val == "Porsche") {
+            this.models = ["911", "Cayenne", "Panamera"];
+        }
         else {
             this.models = [];
         }
@@ -109,8 +117,10 @@ export class NewOfferComponent implements OnInit {
 
     public makes = [
         { value: 'audi', display: 'Audi' },
-        { value: 'bmw', display: 'BMW' }
-
+        { value: 'aston', display: 'Aston Martin' },
+        { value: 'bmw', display: 'BMW' },
+        { value: 'mercedes', display: 'Mercedes' },
+        { value: 'porsche', display: 'Porsche' }     
     ];
     
     public fuels = [
