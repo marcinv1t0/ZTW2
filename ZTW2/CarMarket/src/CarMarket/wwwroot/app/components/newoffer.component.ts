@@ -74,6 +74,7 @@ export class NewOfferComponent implements OnInit {
         debugger;
         
         var _registrationResult: OperationResult = new OperationResult(false, '');
+        this._newOffer.PhotoUri = this._newOffer.Model;
 
         this.offersService.register(this._newOffer)
             .subscribe(res => {

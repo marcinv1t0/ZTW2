@@ -35,16 +35,17 @@
     </div>-->
     <div class="col-md-3 col-sm-6" *ngFor="let offer of _offers">
         <div class="panel panel-default text-center">
-            <div class="panel-heading">
-                <span class="fa-stack fa-5x">
-
-                </span>
+            <div class="panel-heading">          
+                <a class="fancybox" href="/images/{{offer.PhotoUri}}.jpg" title="{{offer.Model}}">
+                    <img class="media-object" src="/images/{{offer.PhotoUri}}.jpg" alt="" style="width:100%"/>
+                </a>             
             </div>
             <div class="panel-body">
                 <h4>Oferta {{offer.Id}}</h4>
-                <label>Marka: </label>{{offer.Make}} <br />
-                <label>Model: </label>{{offer.Model}} <br />
-                {{offer.Description}}
+                <label>Marka:&nbsp;</label>{{offer.Make}} <br />
+                <label>Model:&nbsp;</label>{{offer.Model}} <br />
+                <label>Użytkownik:&nbsp;</label>{{offer.Username}} <br /> <br/>
+                <button class="btn btn-primary">Zobacz szczegóły</button>
             </div> 
         </div>
     </div>
