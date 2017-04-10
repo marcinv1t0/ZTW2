@@ -1,1 +1,53 @@
-﻿<h3>test</h3>
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Oferty
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/Home']">Home</a>
+                </li>
+                <li class="active">Oferty</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+    <!-- <div class="row" *ngFor="let offer of _offers">
+        <div class="col-md-1 text-center">
+            <h3>Oferta {{offer.Id}}</h3>
+            <p>{{convertDateTime(offer.StartTime)}}</p>
+        </div>
+       <div class="col-md-5">
+            <a class="fancybox" rel="gallery" href="{{album.Thumbnail}}" title="{{offer.Model}}">
+                <img class="media-object img-responsive album-thumbnail" src="{{album.Thumbnail}}" alt="" />
+            </a>
+        </div> -->
+       <!-- <div class="col-md-6">-->
+             <!-- <h3>
+              <a [routerLink]="['/albums/:id/photos', {id: album.Id}]">{{album.Title}}</a>
+            </h3> 
+            <label>Marka: </label>{{offer.Make}}
+            <label>Model: </label>{{offer.Model}}
+            <p>{{offer.Description}}</p>
+        </div>
+        <hr />
+    </div>-->
+    <div class="col-md-3 col-sm-6" *ngFor="let offer of _offers">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <span class="fa-stack fa-5x">
+
+                </span>
+            </div>
+            <div class="panel-body">
+                <h4>Oferta {{offer.Id}}</h4>
+                <label>Marka: </label>{{offer.Make}} <br />
+                <label>Model: </label>{{offer.Model}} <br />
+                {{offer.Description}}
+            </div> 
+        </div>
+    </div>
+    <hr>
+</div>
+

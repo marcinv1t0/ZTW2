@@ -14,10 +14,10 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown">
                 <li >                  
-                    <a class="navbar-brand" [routerLink]="['offers']"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Oferty</a>
+                    <a [routerLink]="['offers']"><span class="glyphicon glyphicon-th-list"></span>&nbsp;Oferty</a>
                 </li>
                 <li *ngIf="isUserLoggedIn()">
-                    <a class="navbar-brand" [routerLink]="['newoffer']"><span class="glyphicon glyphicon-plus"></span>&nbsp;Dodaj ofertę</a>
+                    <a [routerLink]="['newoffer']"><span class="glyphicon glyphicon-plus"></span>&nbsp;Dodaj ofertę</a>
                 </li>
                 <li *ngIf="isUserLoggedIn()">
                     <a><span class="glyphicon glyphicon-tags"></span>&nbsp;Twoje oferty</a>

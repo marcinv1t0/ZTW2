@@ -57,7 +57,7 @@ export class NewOfferComponent implements OnInit {
             this.models = ["Seria 3", "Seria 5", "Seria 7"];
         }
         else if (val == "Mercedes") {
-            this.models = ["W211", "W222", "W223"];
+            this.models = ["W211", "W213", "W222"];
         }
         else if (val == "Aston Martin") {
             this.models = ["DB7", "DB8", "DB9"];
@@ -74,6 +74,7 @@ export class NewOfferComponent implements OnInit {
         debugger;
         
         var _registrationResult: OperationResult = new OperationResult(false, '');
+
         this.offersService.register(this._newOffer)
             .subscribe(res => {
                 _registrationResult.Succeeded = res.Succeeded;

@@ -9,6 +9,9 @@ namespace CarMarket.Infrastructure.Mappings
     {
         protected override void Configure()
         {
+            Mapper.CreateMap<Offer, OfferViewModel>()
+                .ForMember(vm => vm.PhotoUri, map => map.MapFrom(p => "/images/" + p.PhotoUri));
+
             Mapper.CreateMap<Photo, PhotoViewModel>()
                .ForMember(vm => vm.Uri, map => map.MapFrom(p => "/images/" + p.Uri));
 

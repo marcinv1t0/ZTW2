@@ -37,47 +37,47 @@ namespace CarMarket.Controllers
             _offerService = offerService;
         }
 
-        [Authorize(Policy = "AdminOnly")]
-        [HttpGet("{page:int=0}/{pageSize=12}")]
-        public async Task<IActionResult> Get(int? page, int? pageSize)
+        [HttpGet]
+        public async Task<IActionResult> Get()
         {
-            PaginationSet<OfferViewModel> pagedSet = new PaginationSet<OfferViewModel>();
+            // PaginationSet<OfferViewModel> pagedSet = new PaginationSet<OfferViewModel>();
+            List<Offer> _offers = null;
 
             try
             {
-                if (await _authorizationService.AuthorizeAsync(User, "AdminOnly"))
-                {
-                    int currentPage = page.Value;
-                    int currentPageSize = pageSize.Value;
+                //if (await _authorizationService.AuthorizeAsync(User, "AdminOnly"))
+                //{
+                    //int currentPage = page.Value;
+                    //int currentPageSize = pageSize.Value;
 
-                    List<Offer> _offers = null;
                     int _totalOffers = new int();
 
 
-                    _offers = _offerRepository
-                        .AllIncluding(a => a.Username)
-                        .OrderBy(a => a.Id)
-                        .Skip(currentPage * currentPageSize)
-                        .Take(currentPageSize)
-                        .ToList();
+                /*_offers = _offerRepository
+                    .OrderBy(a => a.StartTime)
+                    //.Skip(currentPage * currentPageSize)
+                    //Take(currentPageSize)
+                    .ToList();*/
+
+                _offers = _offerRepository.GetAll().ToList();
 
                     _totalOffers = _offerRepository.GetAll().Count();
 
                     IEnumerable<OfferViewModel> _offersVM = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(_offers);
 
-                    pagedSet = new PaginationSet<OfferViewModel>()
+                   /* pagedSet = new PaginationSet<OfferViewModel>()
                     {
                         Page = currentPage,
                         TotalCount = _totalOffers,
                         TotalPages = (int)Math.Ceiling((decimal)_totalOffers / currentPageSize),
                         Items = _offersVM
-                    };
-                }
-                else
+                    };*/
+                //}
+             /*   else
                 {
                     CodeResultStatus _codeResult = new CodeResultStatus(401);
                     return new ObjectResult(_codeResult);
-                }
+                } */
             }
             catch (Exception ex)
             {
@@ -85,7 +85,7 @@ namespace CarMarket.Controllers
                 _loggingRepository.Commit();
             }
 
-            return new ObjectResult(pagedSet);
+            return new ObjectResult(_offers);
         }
 
        // [Route("offer")]
