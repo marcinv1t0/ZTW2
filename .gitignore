@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/ZTW2/CarMarket/src/CarMarket/wwwroot/app/components/offer-details.component.html
+/ZTW2/CarMarket/src/CarMarket/wwwroot/app/components/offer-details.component.ts

@@ -20,51 +20,19 @@
         <hr>
         <div class="row">
             <h2>Rekomendowane oferty</h2>
-            <div class="col-md-3 col-sm-6">
+            <div class="col-md-3 col-sm-6" *ngFor="let offer of _offers">
                 <div class="panel panel-default text-center">
                     <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-
-                        </span>
+                        <a class="fancybox" href="/images/{{offer.PhotoUri}}.jpg" title="{{offer.Model}}">
+                            <img class="media-object" src="/images/{{offer.PhotoUri}}.jpg" alt="" style="width:100%" />
+                        </a>
                     </div>
                     <div class="panel-body">
-                        <h4>Oferta 1</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Oferta 2</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Oferta 3</h4>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-6">
-                <div class="panel panel-default text-center">
-                    <div class="panel-heading">
-                        <span class="fa-stack fa-5x">
-
-                        </span>
-                    </div>
-                    <div class="panel-body">
-                        <h4>Oferta 4</h4>
+                        <h4>{{offer.Make}} {{offer.Model}}</h4>
+                        <label>Rok produkcji:&nbsp;</label>{{offer.Year}} <br />
+                        <label>Cena:&nbsp;</label>{{offer.Price}} PLN<br />
+                        <label>Użytkownik:&nbsp;</label>{{offer.Username}} <br /> <br />
+                        <button class="btn btn-primary">Zobacz szczegóły</button>
                     </div>
                 </div>
             </div>
