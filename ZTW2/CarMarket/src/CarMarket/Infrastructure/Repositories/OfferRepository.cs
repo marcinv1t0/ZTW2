@@ -19,5 +19,16 @@ namespace CarMarket.Infrastructure.Repositories
             }
             return _offers;
         }
+
+        public Offer GetOfferById(int id)
+        {
+            Offer _offer = null;
+            List<Offer> _allOffers = (List<Offer>)this.GetAll();
+            foreach (var _off in _allOffers)
+            {
+                if (_off.Id == id) { _offer = _off; }                
+            }
+            return _offer;
+        }
     }
 }
