@@ -1,0 +1,12 @@
+﻿<div style="display: block; text-align:center">
+    <div class="col-md-5">
+        <h3>Oferty według marek samochodów</h3>
+        <canvas baseChart
+                [data]="doughnutChartData"
+                [labels]="doughnutChartLabels"
+                [chartType]="doughnutChartType"
+                [colors]="doughnutChartColors"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)"></canvas>
+    </div>
+</div>
