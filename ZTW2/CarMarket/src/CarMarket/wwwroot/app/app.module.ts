@@ -4,6 +4,8 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { Headers, RequestOptions, BaseRequestOptions} from '@angular/http';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+
 
 import { AccountModule } from './components/account/account.module';
 import { AppComponent }  from './app.component';
@@ -13,6 +15,7 @@ import { NewOfferComponent } from './components/newoffer.component';
 import { OffersComponent } from './components/offers.component';
 import { PhotosComponent } from './components/photos.component';
 import { AlbumsComponent } from './components/albums.component';
+import { StatisticsComponent } from './components/statistics.component';
 import { routing } from './routes';
 
 import { DataService } from './core/services/data.service';
@@ -37,9 +40,10 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         FormsModule,
         HttpModule,
         routing,
-        AccountModule
+        AccountModule,
+        ChartsModule
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, AlbumsComponent, NewOfferComponent, OffersComponent],
+    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

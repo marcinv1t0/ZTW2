@@ -7,6 +7,7 @@ import { AlbumsComponent } from './components/albums.component';
 import { AlbumPhotosComponent } from './components/album-photos.component';
 import { NewOfferComponent } from './components/newoffer.component';
 import {OffersComponent } from './components/offers.component';
+import { StatisticsComponent } from './components/statistics.component';
 import { accountRoutes, accountRouting } from './components/account/routes';
 
 
@@ -39,6 +40,10 @@ const appRoutes: Routes = [
     {
         path: 'offers',
         component: OffersComponent
+    },
+    {
+        path: 'statistics',
+        component: StatisticsComponent
     }
 ];
 

@@ -7,6 +7,7 @@
         paths: {
             // paths serve as alias
             'npm:': 'lib/'
+            //'npm2:': 'node_modules/'
         },
         // map tells the System loader where to look for things
         map: {
@@ -23,7 +24,9 @@
             '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
             // other libraries
             'rxjs': 'npm:rxjs',
-            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+            'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+            // 'ng2-charts': 'npm:ng2-charts/bundles/ng2-charts.umd.js',
+            'ng2-charts': 'npm:ng2-charts'
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
@@ -37,7 +40,12 @@
             'angular2-in-memory-web-api': {
                 main: './index.js',
                 defaultExtension: 'js'
+            },
+            'ng2-charts': {
+                main: 'ng2-charts.js',
+                defaultExtension: 'js'
             }
+
         }
     });
 })(this);

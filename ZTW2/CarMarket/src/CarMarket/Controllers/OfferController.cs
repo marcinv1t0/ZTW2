@@ -116,7 +116,7 @@ namespace CarMarket.Controllers
                 _offerResult = new GenericResult()
                 {
                     Succeeded = false,
-                    Message = ex.Message
+                    Message = "Należy wypełnić wszystkie pola"
                 };
 
                 _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });

@@ -29,6 +29,8 @@ gulp.task('setup-vendors', function (done) {
       'bower_components/bootstrap/dist/js/bootstrap*.js',
       'node_modules/fancybox/dist/js/jquery.fancybox.pack.js',
       'bower_components/alertify.js/lib/alertify.min.js',
+	  'bower_components/chart.js/dist/*.js',
+	  'node_modules/ng2-charts/**/*.js',
       'systemjs.config.js'
     ]).pipe(gulp.dest(paths.jsVendors));
 
@@ -65,13 +67,21 @@ gulp.task('setup-vendors', function (done) {
     ]).pipe(gulp.dest(paths.fontsVendors));
 
     gulp.src('node_modules/' + "@angular/**/*.js",
-                { base: 'node_modules/' + "@angular/" })
-                .pipe(gulp.dest(lib + "@angular/"));
+			{ base: 'node_modules/' + "@angular/" })
+			.pipe(gulp.dest(lib + "@angular/"));
 
     gulp.src('node_modules/' + "angular2-in-memory-web-api/*.js",
             { base: 'node_modules/' })
             .pipe(gulp.dest(lib));
-
+			
+    gulp.src('node_modules/' + "ng2-charts/**/*.js",
+            { base: 'node_modules/' })
+            .pipe(gulp.dest(lib));
+			
+	gulp.src('node_modules/' + "chart.js/dist/*.js",
+            { base: 'node_modules/' })
+            .pipe(gulp.dest(lib));
+			
     gulp.src('node_modules/' + "core-js/client/shim*.js",
             { base: 'node_modules/' })
             .pipe(gulp.dest(lib));
