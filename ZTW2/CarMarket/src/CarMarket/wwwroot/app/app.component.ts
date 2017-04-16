@@ -8,6 +8,8 @@ import {enableProdMode} from '@angular/core';
 enableProdMode();
 import { MembershipService } from './core/services/membership.service';
 import { User } from './core/domain/user';
+import {TranslateService} from 'ng2-translate';
+
 
 @Component({
     selector: 'CarMarket-app',
@@ -16,9 +18,19 @@ import { User } from './core/domain/user';
 export class AppComponent implements OnInit {
 
     constructor(public membershipService: MembershipService,
-                public location: Location) { }
+        public location: Location, public translate: TranslateService) {
+        translate.addLangs(["en", "pl"]);
+        translate.setDefaultLang('en');
 
-    ngOnInit() {   }
+        let browserLang = translate.getBrowserLang();
+        translate.use(browserLang.match(/en|pl/) ? browserLang : 'en');
+    }
+
+    ngOnInit() {}
+
+    langOnClick() {
+        
+    }
 
     isUserLoggedIn(): boolean {
         return this.membershipService.isUserAuthenticated();

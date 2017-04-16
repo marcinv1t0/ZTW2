@@ -1,11 +1,11 @@
 ﻿import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpModule, Http } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { Location, LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { Headers, RequestOptions, BaseRequestOptions} from '@angular/http';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
-
+import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-translate';
 
 import { AccountModule } from './components/account/account.module';
 import { AppComponent }  from './app.component';
@@ -41,7 +41,12 @@ class AppBaseRequestOptions extends BaseRequestOptions {
         HttpModule,
         routing,
         AccountModule,
-        ChartsModule
+        ChartsModule,
+        TranslateModule.forRoot({
+            provide: TranslateLoader,
+            useFactory: (http: Http) => new TranslateStaticLoader(http, '/assets/i18n', '.json'),
+            deps: [Http]
+        })
     ],
     declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,

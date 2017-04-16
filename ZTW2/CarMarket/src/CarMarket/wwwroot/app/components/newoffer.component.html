@@ -1,22 +1,22 @@
 ﻿<div id="newoffer">
     <div class="container">
-        <h2>Nowe ogłoszenie</h2>
+        <h2>{{ 'NEWOFFER' | translate }}</h2>
         <form role="form">
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Dane podstawowe</h3>
+                    <h3 class="panel-title">{{ 'BASIC' | translate }}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="make">Marka:</label>
+                            <label for="make">{{ 'MAKE' | translate }}</label>
                             <select class="form-control" id="make" [(ngModel)]="_newOffer.Make" name="make" (change)="dropChange($event.target.value)">
                                 <option *ngFor="let make of makes" [value]="make.display">
                                     {{make.display}}
                                 </option>
                             </select>
-                            <label for="year">Rok produkcji:</label>
-                            <input type="text" class="form-control" id="year" placeholder="Podaj rok produkcji"  name="year" [(ngModel)]="_newOffer.Year">
+                            <label for="year">{{ 'YEAR' | translate }}</label>
+                            <input type="text" class="form-control" id="year" name="year" [(ngModel)]="_newOffer.Year">
 
                         </div>
                     </div>
@@ -29,9 +29,9 @@
                                 </option>                           
                             </select>
 
-                            <label for="mileage">Przebieg:</label>
+                            <label for="mileage">{{ 'MILEAGE' | translate }}</label>
                             <div class="input-group">
-                                <input type="text" name="mileage" class="form-control" id="mileage" placeholder="Podaj przebieg..." [(ngModel)]="_newOffer.Mileage">
+                                <input type="text" name="mileage" class="form-control" id="mileage" [(ngModel)]="_newOffer.Mileage">
                                 <span class="input-group-addon" id="basic-addon1">km</span>
                             </div>
                             
@@ -39,10 +39,10 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="price">Cena:</label>
+                            <label for="price">{{ 'PRICE' | translate }}</label>
                             <div class="input-group">
-                               <input type="text" class="form-control" name="price" id="price" placeholder="Podaj cenę" [(ngModel)]="_newOffer.Price">
-                                <span class="input-group-addon" id="basic-addon1">zł</span>
+                               <input type="text" class="form-control" name="price" id="price"  [(ngModel)]="_newOffer.Price">
+                                <span class="input-group-addon" id="basic-addon1">PLN</span>
                             </div>
                         </div>
                     </div>
@@ -53,7 +53,7 @@
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Opis pojazdu</h3>
+                    <h3 class="panel-title">{{ 'CARDESC' | translate }}</h3>
                 </div>
                 <div class="panel-body">
                     <div class="form-group">
@@ -67,28 +67,28 @@
                 <div class="panel-body">
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="fuel">Paliwo:</label>
+                            <label for="fuel">{{ 'FUEL' | translate }}:</label>
                             <select class="form-control " id="fuel" name="fuel" [(ngModel)]="_newOffer.Fuel">
                                 <option *ngFor="let fuel of fuels" [value]="fuel.display">
                                     {{fuel.display}}
                                 </option>
                             </select>
 
-                            <label for="drive">Rodzaj napędu:</label>
+                            <label for="drive">{{ 'DRIVE' | translate }}:</label>
                             <select class="form-control " id="drive"  name="drive" [(ngModel)]="_newOffer.Drive">
                                 <option *ngFor="let drive of drives" [value]="drive.display">
                                     {{drive.display}}
                                 </option>
                             </select>
 
-                            <label for="drive">Skrzynia biegów:</label>
+                            <label for="drive">{{ 'GEARBOX' | translate }}:</label>
                             <select class="form-control " id="gearbox" name="gearbox" [(ngModel)]="_newOffer.Gearbox">
                                 <option *ngFor="let gb of gearboxes" [value]="gb.display">
                                     {{gb.display}}
                                 </option>
                             </select>
 
-                            <label for="seatsNb">Liczba miejsc:</label>
+                            <label for="seatsNb">{{ 'SEATS' | translate }}:</label>
                             <select class="form-control " id="seatsNb" name="seatsNb" [(ngModel)]="_newOffer.SeatsNb">
                                 <option *ngFor="let seat of seats" [value]="seat.display">
                                     {{seat.display}}
@@ -100,26 +100,26 @@
                     </div>
                     <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="displacement">Pojemność:</label>
+                            <label for="displacement">{{ 'DISPLACEMENT' | translate }}:</label>
                             
                             <div class="input-group">
-                                <input type="text" class="form-control" id="displacement" name="displacement" [(ngModel)]="_newOffer.Displacement" placeholder="Podaj pojemność...">
+                                <input type="text" class="form-control" id="displacement" name="displacement" [(ngModel)]="_newOffer.Displacement" >
                                 <span class="input-group-addon" id="basic-addon1">ccm</span>
                             </div>
 
-                            <label for="category">Typ nadwozia:</label>
+                            <label for="category">{{ 'CATEGORY' | translate }}:</label>
                             <select class="form-control " id="category" name="category" [(ngModel)]="_newOffer.Category">
                                 <option *ngFor="let type of types" [value]="type.display">
                                     {{type.display}}
                                 </option>
                             </select>
-                            <label for="doorsNb">Liczba drzwi:</label>
+                            <label for="doorsNb">{{ 'DOORS' | translate }}:</label>
                             <select class="form-control " id="doorsNb" name="doorsNb" [(ngModel)]="_newOffer.DoorsNb">
                                 <option *ngFor="let door of doors" [value]="door.display">
                                     {{door.display}}
                                 </option>
                             </select>
-                            <label for="color">Kolor:</label>
+                            <label for="color">{{ 'COLOR' | translate }}:</label>
                             <select class="form-control " id="color" name="color" [(ngModel)]="_newOffer.Color">
                                 <option *ngFor="let color of colors" [value]="color.display">
                                     {{color.display}}
@@ -134,41 +134,20 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Wyposażenie</h3>
+                    <h3 class="panel-title">{{ 'EQUIPMENT' | translate }}</h3>
                 </div>
                 <div class="panel-body">
-                    <label class="checkbox-inline"><input type="checkbox" value="damaged" id="damaged" [(ngModel)]="_newOffer.Damaged" name="damaged">Uszkodzony</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="damaged" id="damaged" [(ngModel)]="_newOffer.Damaged" name="damaged">{{ 'DAMAGED' | translate }}</label>
                     <label class="checkbox-inline"><input type="checkbox" value="ABS" id="abs" name="abs" [(ngModel)]="_newOffer.ABS">ABS</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="AC" id="AC" name="AC" [(ngModel)]="_newOffer.AirCond" >Klimatyzacja</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="airbag" id="airbag" name="airbags" [(ngModel)]="_newOffer.Airbags">Poduszki powietrzne</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="centralLocking" id="centralLocking" name="centralLocking" [(ngModel)]="_newOffer.CentralLock" /> Centralny zamek</label>
-
-
+                    <label class="checkbox-inline"><input type="checkbox" value="AC" id="AC" name="AC" [(ngModel)]="_newOffer.AirCond" >{{ 'AIRCOND' | translate }}</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="airbag" id="airbag" name="airbags" [(ngModel)]="_newOffer.Airbags">{{ 'AIRBAGS' | translate }}</label>
+                    <label class="checkbox-inline"><input type="checkbox" value="centralLocking" id="centralLocking" name="centralLocking" [(ngModel)]="_newOffer.CentralLock" />{{ 'LOCK' | translate }}</label>
                 </div>
-
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Dodaj zdjęcia</h3>
-                </div>
-                <div class="panel-body">
-                    <div class="form-group">
-                        <input id="input-44" name="input44[]" type="file" multiple class="file file-loading">
-                        
-                        <div id="errorBlock" class="help-block"></div>
-                        
-                    </div>
-
-
-                </div>
-
             </div>
             <button type="button" class="btn btn-default btn-md pull-right" (click)="submit()">
-                <span class="glyphicon glyphicon-save" aria-hidden="true"></span> Dodaj ogłoszenie
+                <span class="glyphicon glyphicon-save" aria-hidden="true"></span>{{ 'ADDOFFER' | translate }}
             </button>
-        </form>
-       
-
+        </form>     
     </div>
 </div>
 
