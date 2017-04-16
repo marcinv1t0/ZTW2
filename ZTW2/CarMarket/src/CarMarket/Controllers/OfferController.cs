@@ -88,7 +88,41 @@ namespace CarMarket.Controllers
             return new ObjectResult(_offers);
         }
 
-       // [Route("offer")]
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> Get(int id)
+        {
+
+            List<Offer> _offers = null;
+            Offer result = null;
+
+            try
+            {
+                
+
+                int _totalOffers = new int();
+
+
+
+
+
+                _offers = _offerRepository.GetAll().ToList();
+                result = this._offerRepository.GetSingle(a => a.Id == id);
+                _totalOffers = _offerRepository.GetAll().Count();
+
+                IEnumerable<OfferViewModel> _offersVM = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(_offers);
+                OfferViewModel _offerVM = Mapper.Map<Offer, OfferViewModel>(result);
+
+            }
+            catch (Exception ex)
+            {
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+            return new ObjectResult(result);
+        }
+
+        // [Route("offer")]
         [HttpPost]
         public IActionResult Post([FromBody] OfferViewModel offer)
         {

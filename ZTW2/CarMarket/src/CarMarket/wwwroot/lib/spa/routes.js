@@ -8,6 +8,7 @@ var album_photos_component_1 = require("./components/album-photos.component");
 var newoffer_component_1 = require("./components/newoffer.component");
 var offers_component_1 = require("./components/offers.component");
 var statistics_component_1 = require("./components/statistics.component");
+var offer_component_1 = require("./components/offer.component");
 var appRoutes = [
     {
         path: '',
@@ -41,6 +42,10 @@ var appRoutes = [
     {
         path: 'statistics',
         component: statistics_component_1.StatisticsComponent
+    },
+    {
+        path: 'offer',
+        component: offer_component_1.OfferComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

@@ -73,7 +73,7 @@ namespace CarMarket.Controllers
 
             try
             {
-                Photo _photoToRemove = this._photoRepository.GetSingle(id);
+                Photo _photoToRemove = _photoRepository.GetSingle(id);
                 this._photoRepository.Delete(_photoToRemove);
                 this._photoRepository.Commit();
 

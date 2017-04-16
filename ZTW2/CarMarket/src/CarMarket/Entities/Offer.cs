@@ -7,7 +7,7 @@ namespace CarMarket.Entities
 {
     public class Offer : IEntityBase
     {
-        public Offer() { }
+    
         public int Id { get; set; }
 
         public string Username { get; set; }

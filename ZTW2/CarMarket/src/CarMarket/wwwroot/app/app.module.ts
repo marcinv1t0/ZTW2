@@ -13,6 +13,7 @@ import { AlbumPhotosComponent } from './components/album-photos.component';
 import { HomeComponent } from './components/home.component';
 import { NewOfferComponent } from './components/newoffer.component';
 import { OffersComponent } from './components/offers.component';
+import { OfferComponent } from './components/offer.component';
 import { PhotosComponent } from './components/photos.component';
 import { AlbumsComponent } from './components/albums.component';
 import { StatisticsComponent } from './components/statistics.component';
@@ -48,7 +49,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
             deps: [Http]
         })
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent],
+    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent, OfferComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

@@ -8,6 +8,8 @@ import { AlbumPhotosComponent } from './components/album-photos.component';
 import { NewOfferComponent } from './components/newoffer.component';
 import {OffersComponent } from './components/offers.component';
 import { StatisticsComponent } from './components/statistics.component';
+import { OfferComponent } from './components/offer.component';
+
 import { accountRoutes, accountRouting } from './components/account/routes';
 
 
@@ -42,8 +44,13 @@ const appRoutes: Routes = [
         component: OffersComponent
     },
     {
+
         path: 'statistics',
         component: StatisticsComponent
+    },
+    {
+        path: 'offer',
+        component: OfferComponent
     }
 ];
 
