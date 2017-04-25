@@ -1,9 +1,11 @@
 ﻿import { Component, OnInit } from '@angular/core';
 import { Offer } from '../core/domain/offer';
+import { Router, ActivatedRoute }  from '@angular/router';
 import { Paginated } from '../core/common/paginated';
 import { DataService } from '../core/services/data.service';
 import { UtilityService } from '../core/services/utility.service';
 import { NotificationService } from '../core/services/notification.service';
+import { Subscription }  from 'rxjs/Subscription';
 
 
 @Component({
@@ -13,16 +15,28 @@ import { NotificationService } from '../core/services/notification.service';
 export class OfferComponent extends Paginated implements OnInit {
     private _offerAPI: string = 'api/offer/';
     private _offer: Offer;
+    private sub: Subscription;
+    private _offerId: number;
 
     constructor(public offerService: DataService,
         public utilityService: UtilityService,
-        public notificationService: NotificationService) {
+        public notificationService: NotificationService, private route: ActivatedRoute,
+                private router: Router) {
         super(0, 0, 0);
     }
 
     ngOnInit() {
-        this.offerService.set(this._offerAPI, 3);
-        this.getOffer(6);
+        
+
+        
+        this.sub = this.route.params.subscribe(params => {
+                this._offerId = params['id']; // (+) converts string 'id' to a number
+                
+            });
+            
+                this.offerService.set(this._offerAPI, 3);
+                this.getOffer(this._offerId);
+       
     }
 
     hack(val) {

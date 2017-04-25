@@ -8,26 +8,80 @@
                 <li>
                     <a [routerLink]="['/Home']">Home</a>
                 </li>
-                <li class="active">Oferty</li>
+                <li>
+                    <a [routerLink]="['/offers']">Oferty</a>
+                </li>
+                <li class="active">Oferta</li>
             </ol>
         </div>
     </div>
 
-    <div class="col-md-3 col-sm-6">
+    <div class="col-md-9">
+        <div class="panel panel-default">
+
+            <div class="panel-body">
+                <span style='font-weight: bold; font-size: 150%;'>{{_offer?.Make}} {{_offer?.Model}}</span>
+                <span style='font-weight: bold; font-size: 120%;'>&nbsp;&nbsp;|&nbsp;&nbsp;{{_offer?.Year}}&nbsp;&nbsp;|&nbsp;&nbsp;{{_offer?.Fuel}}</span>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
         <div class="panel panel-default text-center">
+
+            <div class="panel-body">
+                <span style='font-weight: bold; font-size: 140%; color: #56B3CD;'>{{_offer?.Price}} PLN</span>
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="panel panel-default ">
             <div class="panel-heading">
+                Dane techniczne
+            </div>
+
+            <div class="panel-body">
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'MILEAGE' | translate }}:&nbsp;</label>{{_offer?.Mileage}} km <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'DISPLACEMENT' | translate }}:&nbsp;</label>{{_offer?.Displacement}} ccm<br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'DRIVE' | translate }}:&nbsp;</label>{{_offer?.Drive}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'CATEGORY' | translate }}:&nbsp;</label>{{_offer?.Category}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'GEARBOX' | translate }}:&nbsp;</label>{{_offer?.Gearbox}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'COLOR' | translate }}:&nbsp;</label>{{_offer?.Color}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'DOORS' | translate }}:&nbsp;</label>{{_offer?.DoorsNb}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'SEATS' | translate }}:&nbsp;</label>{{_offer?.SeatsNb}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'DAMAGED' | translate }}:&nbsp;</label>{{_offer?.Damaged?'Tak':'Nie'}}  <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>ABS:&nbsp;</label>{{_offer?.ABS?'Tak':'Nie'}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'AIRCOND' | translate }}:&nbsp;</label>{{_offer?.AirCond?'Tak':'Nie'}} <br />
+                <label style='margin-bottom:10px;  display:inline-block;'>{{ 'AIRBAGS' | translate }}:&nbsp;</label>{{_offer?.Airbags?'Tak':'Nie'}} <br />
+                <label style='margin-bottom:12px;  display:inline-block;'>{{ 'LOCK' | translate }}:&nbsp;</label>{{_offer?.CentralLock?'Tak':'Nie'}} <br /><br />
+
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <div class="panel panel-default text-center">
+
+            <div class="panel-body">
                 <a class="fancybox" href="/images/{{_offer?.PhotoUri}}.jpg" title="{{_offer?.Model}}">
                     <img class="media-object" src="/images/{{_offer?.PhotoUri}}.jpg" alt="" style="width:100%" />
                 </a>
+
             </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                {{ 'CARDESC' | translate }}
+            </div>
+
             <div class="panel-body">
-                <h4>{{_offer?.Make}} {{_offer?.Model}}</h4>
-                <label>Rok produkcji:&nbsp;</label>{{_offer?.Year}} <br />
-                <label>Cena:&nbsp;</label>{{_offer?.Price}} PLN<br />
-                
+                {{_offer?.Description}}
+
             </div>
         </div>
     </div>
     <hr>
 </div>
-

@@ -4,6 +4,7 @@ import { Paginated } from '../core/common/paginated';
 import { DataService } from '../core/services/data.service';
 import { UtilityService } from '../core/services/utility.service';
 import { NotificationService } from '../core/services/notification.service';
+import { OperationResult } from '../core/domain/operationResult';
 
 
 @Component({
@@ -23,6 +24,29 @@ export class OffersComponent extends Paginated implements OnInit {
     ngOnInit() {
         this.offerService.set(this._offerAPI, 3);
         this.getAlbums();
+    }
+
+    delete(id: number) {
+        var _removeResult: OperationResult = new OperationResult(false, '');
+
+        this.notificationService.printConfirmationDialog('Are you sure you want to delete the photo?',
+            () => {
+                this.offerService.delete(id)
+                    .subscribe(res => {
+                        _removeResult.Succeeded = res.Succeeded;
+                        _removeResult.Message = res.Message;
+                    },
+                    error => console.error('Error: ' + error),
+                    () => {
+                        if (_removeResult.Succeeded) {
+                            this.notificationService.printSuccessMessage('Offer removed from gallery.');
+                            this.getAlbums();
+                        }
+                        else {
+                            this.notificationService.printErrorMessage('Failed to remove offer');
+                        }
+                    });
+            });
     }
 
     getAlbums(): void {

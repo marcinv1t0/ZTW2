@@ -23,9 +23,9 @@ namespace CarMarket.Controllers
         IOfferRepository _offerRepository;
         ILoggingRepository _loggingRepository;
         IOfferService _offerService;
-        
 
-        
+
+
         public OfferController(IAuthorizationService authorizationService,
                                 IOfferRepository offerRepository,
                                 ILoggingRepository loggingRepository,
@@ -47,10 +47,10 @@ namespace CarMarket.Controllers
             {
                 //if (await _authorizationService.AuthorizeAsync(User, "AdminOnly"))
                 //{
-                    //int currentPage = page.Value;
-                    //int currentPageSize = pageSize.Value;
+                //int currentPage = page.Value;
+                //int currentPageSize = pageSize.Value;
 
-                    int _totalOffers = new int();
+                int _totalOffers = new int();
 
 
                 /*_offers = _offerRepository
@@ -61,23 +61,23 @@ namespace CarMarket.Controllers
 
                 _offers = _offerRepository.GetAll().ToList();
 
-                    _totalOffers = _offerRepository.GetAll().Count();
+                _totalOffers = _offerRepository.GetAll().Count();
 
-                    IEnumerable<OfferViewModel> _offersVM = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(_offers);
+                IEnumerable<OfferViewModel> _offersVM = Mapper.Map<IEnumerable<Offer>, IEnumerable<OfferViewModel>>(_offers);
 
-                   /* pagedSet = new PaginationSet<OfferViewModel>()
-                    {
-                        Page = currentPage,
-                        TotalCount = _totalOffers,
-                        TotalPages = (int)Math.Ceiling((decimal)_totalOffers / currentPageSize),
-                        Items = _offersVM
-                    };*/
+                /* pagedSet = new PaginationSet<OfferViewModel>()
+                 {
+                     Page = currentPage,
+                     TotalCount = _totalOffers,
+                     TotalPages = (int)Math.Ceiling((decimal)_totalOffers / currentPageSize),
+                     Items = _offersVM
+                 };*/
                 //}
-             /*   else
-                {
-                    CodeResultStatus _codeResult = new CodeResultStatus(401);
-                    return new ObjectResult(_codeResult);
-                } */
+                /*   else
+                   {
+                       CodeResultStatus _codeResult = new CodeResultStatus(401);
+                       return new ObjectResult(_codeResult);
+                   } */
             }
             catch (Exception ex)
             {
@@ -97,7 +97,7 @@ namespace CarMarket.Controllers
 
             try
             {
-                
+
 
                 int _totalOffers = new int();
 
@@ -136,7 +136,7 @@ namespace CarMarket.Controllers
                     offer.Category, offer.SeatsNb, offer.DoorsNb, offer.Displacement, offer.Gearbox, offer.Drive, offer.Damaged, offer.ABS, offer.Airbags, offer.CentralLock, offer.AirCond,
                     offer.StartTime, offer.EndTime, offer.Status, offer.Make, offer.PhotoUri);
 
-                if(_offer != null)
+                if (_offer != null)
                 {
                     _offerResult = new GenericResult()
                     {
@@ -161,7 +161,41 @@ namespace CarMarket.Controllers
             return _result;
         }
 
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            IActionResult _result = new ObjectResult(false);
+            GenericResult _removeResult = null;
 
-     
+            try
+            {
+                Offer _offerToRemove = this._offerRepository.GetSingle(id);
+                this._offerRepository.Delete(_offerToRemove);
+                this._offerRepository.Commit();
+
+                _removeResult = new GenericResult()
+                {
+                    Succeeded = true,
+                    Message = "Offer removed."
+                };
+            }
+            catch (Exception ex)
+            {
+                _removeResult = new GenericResult()
+                {
+                    Succeeded = false,
+                    Message = ex.Message
+                };
+
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+            _result = new ObjectResult(_removeResult);
+            return _result;
+        }
+
+
+
     }
 }

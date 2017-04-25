@@ -51,6 +51,10 @@ const appRoutes: Routes = [
     {
         path: 'offer',
         component: OfferComponent
+    },
+    {
+        path: 'offers/:id/offer',
+        component: OfferComponent
     }
 ];
 
