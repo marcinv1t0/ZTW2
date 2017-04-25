@@ -29,7 +29,7 @@ export class OffersComponent extends Paginated implements OnInit {
     delete(id: number) {
         var _removeResult: OperationResult = new OperationResult(false, '');
 
-        this.notificationService.printConfirmationDialog('Are you sure you want to delete the photo?',
+        this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?',
             () => {
                 this.offerService.delete(id)
                     .subscribe(res => {
@@ -39,11 +39,11 @@ export class OffersComponent extends Paginated implements OnInit {
                     error => console.error('Error: ' + error),
                     () => {
                         if (_removeResult.Succeeded) {
-                            this.notificationService.printSuccessMessage('Offer removed from gallery.');
+                            this.notificationService.printSuccessMessage('Oferta pomyślnie usunięta!');
                             this.getAlbums();
                         }
                         else {
-                            this.notificationService.printErrorMessage('Failed to remove offer');
+                            this.notificationService.printErrorMessage('Usuwanie zakończone niepowodzeniem!');
                         }
                     });
             });

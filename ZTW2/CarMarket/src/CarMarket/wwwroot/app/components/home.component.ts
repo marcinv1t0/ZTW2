@@ -4,6 +4,7 @@ import { Paginated } from '../core/common/paginated';
 import { DataService } from '../core/services/data.service';
 import { UtilityService } from '../core/services/utility.service';
 import { NotificationService } from '../core/services/notification.service';
+import { MembershipService } from '../core/services/membership.service';
 
 @Component({
     selector: 'home',
@@ -14,7 +15,8 @@ export class HomeComponent extends Paginated implements OnInit{
     private _offerAPI: string = 'api/offer/';
     private _offers: Array<Offer> = new Array;
 
-    constructor(public offerService: DataService,
+    constructor(public membershipService: MembershipService,
+        public offerService: DataService,
         public utilityService: UtilityService,
         public notificationService: NotificationService) {
         super(0, 0, 0);
@@ -44,6 +46,10 @@ export class HomeComponent extends Paginated implements OnInit{
                     this.utilityService.navigateToSignIn();
                 }
             });
+    }
+
+    isUserLoggedIn(): boolean {
+        return this.membershipService.isUserAuthenticated();
     }
 
     convertDateTime(date: Date) {

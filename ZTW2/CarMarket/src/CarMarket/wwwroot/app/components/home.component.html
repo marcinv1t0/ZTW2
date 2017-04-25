@@ -8,10 +8,10 @@
                 </div>
                 <div class="nav-action">
                     <div class="button">
-                        <div><a [routerLink]="['/account/login']" class="btn btn-primary">{{ 'LOGIN' | translate }}</a></div>
+                        <div *ngIf="!isUserLoggedIn()"><a [routerLink]="['/account/login']" class="btn btn-primary">{{ 'LOGIN' | translate }}</a></div>
                     </div>
                     <div class="button">
-                        <div><a [routerLink]="['/account/register']" class="btn btn-success">{{ 'REGISTER' | translate }}</a></div>
+                        <div *ngIf="!isUserLoggedIn()" ><a [routerLink]="['/account/register']" class="btn btn-success">{{ 'REGISTER' | translate }}</a></div>
                     </div>
 
                 </div>
