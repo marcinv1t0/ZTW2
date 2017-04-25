@@ -32,7 +32,7 @@
                         <label>{{ 'YEAR' | translate }}:&nbsp;</label>{{offer.Year}} <br />
                         <label>{{ 'PRICE' | translate }}:&nbsp;</label>{{offer.Price}} PLN<br />
                         <label>{{ 'USER' | translate }}:&nbsp;</label>{{offer.Username}} <br /> <br />
-                        <button class="btn btn-primary">{{ 'DETAILS' | translate }}</button>
+                        <button [routerLink]="['/offers/:id/offer', {id: offer.Id}]" class="btn btn-primary">{{ 'DETAILS' | translate }}</button>
                     </div>
                 </div>
             </div>
