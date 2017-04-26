@@ -24,6 +24,7 @@ var paginated_1 = require("../core/common/paginated");
 var data_service_1 = require("../core/services/data.service");
 var utility_service_1 = require("../core/services/utility.service");
 var notification_service_1 = require("../core/services/notification.service");
+var operationResult_1 = require("../core/domain/operationResult");
 var OffersComponent = (function (_super) {
     __extends(OffersComponent, _super);
     function OffersComponent(offerService, utilityService, notificationService) {
@@ -32,11 +33,79 @@ var OffersComponent = (function (_super) {
         _this.utilityService = utilityService;
         _this.notificationService = notificationService;
         _this._offerAPI = 'api/offer/';
+        _this.makes = [
+            { value: 'audi', display: 'Audi' },
+            { value: 'aston', display: 'Aston Martin' },
+            { value: 'bmw', display: 'BMW' },
+            { value: 'mercedes', display: 'Mercedes' },
+            { value: 'porsche', display: 'Porsche' }
+        ];
         return _this;
     }
     OffersComponent.prototype.ngOnInit = function () {
         this.offerService.set(this._offerAPI, 3);
         this.getAlbums();
+    };
+    OffersComponent.prototype.dropChange = function (val) {
+        this._make = val;
+    };
+    OffersComponent.prototype.filter = function () {
+        debugger;
+        var fpfnull = false;
+        if (this._filterPriceFrom == null) {
+            this._filterPriceFrom = 0;
+            fpfnull = true;
+        }
+        var fptnull = false;
+        if (this._filterPriceTo == null) {
+            this._filterPriceTo = Number.MAX_SAFE_INTEGER;
+            fptnull = true;
+        }
+        var fyfnull = false;
+        if (this._filterYearFrom == null) {
+            this._filterYearFrom = 0;
+            fyfnull = true;
+        }
+        var fytnull = false;
+        if (this._filterYearTo == null) {
+            this._filterYearTo = Number.MAX_SAFE_INTEGER;
+            fytnull = true;
+        }
+        this._offersFiltered = new Array();
+        for (var i = 0; i < this._offers.length; i++) {
+            if (this._offers[i].Year <= this._filterYearTo && this._offers[i].Year >= this._filterYearFrom && this._offers[i].Price <= this._filterPriceTo && this._offers[i].Price >= this._filterPriceFrom) {
+                if (this._make == null || this._offers[i].Make == this._make) {
+                    this._offersFiltered.push(this._offers[i]);
+                }
+            }
+        }
+        if (fpfnull)
+            this._filterPriceFrom = null;
+        if (fptnull)
+            this._filterPriceTo = null;
+        if (fyfnull)
+            this._filterYearFrom = null;
+        if (fytnull)
+            this._filterYearTo = null;
+    };
+    OffersComponent.prototype.delete = function (id) {
+        var _this = this;
+        var _removeResult = new operationResult_1.OperationResult(false, '');
+        this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?', function () {
+            _this.offerService.delete(id)
+                .subscribe(function (res) {
+                _removeResult.Succeeded = res.Succeeded;
+                _removeResult.Message = res.Message;
+            }, function (error) { return console.error('Error: ' + error); }, function () {
+                if (_removeResult.Succeeded) {
+                    _this.notificationService.printSuccessMessage('Oferta pomyślnie usunięta!');
+                    _this.getAlbums();
+                }
+                else {
+                    _this.notificationService.printErrorMessage('Usuwanie zakończone niepowodzeniem!');
+                }
+            });
+        });
     };
     OffersComponent.prototype.getAlbums = function () {
         var _this = this;
@@ -44,6 +113,7 @@ var OffersComponent = (function (_super) {
             .subscribe(function (res) {
             var data = res.json();
             _this._offers = data;
+            _this._offersFiltered = data;
             /*this._page = data.Page;
             this._pagesCount = data.TotalPages;
             this._totalCount = data.TotalCount;*/

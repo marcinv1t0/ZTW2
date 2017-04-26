@@ -44,7 +44,7 @@ var DataService = (function () {
             return this.http.post(this._baseUri, data);
     };
     DataService.prototype.delete = function (id) {
-        return this.http.delete(this._baseUri + '/' + id.toString())
+        return this.http.delete(this._baseUri + id.toString())
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.deleteResource = function (resource) {

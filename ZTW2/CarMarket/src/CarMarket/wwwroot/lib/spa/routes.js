@@ -46,6 +46,10 @@ var appRoutes = [
     {
         path: 'offer',
         component: offer_component_1.OfferComponent
+    },
+    {
+        path: 'offers/:id/offer',
+        component: offer_component_1.OfferComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

@@ -24,10 +24,12 @@ var paginated_1 = require("../core/common/paginated");
 var data_service_1 = require("../core/services/data.service");
 var utility_service_1 = require("../core/services/utility.service");
 var notification_service_1 = require("../core/services/notification.service");
+var membership_service_1 = require("../core/services/membership.service");
 var HomeComponent = (function (_super) {
     __extends(HomeComponent, _super);
-    function HomeComponent(offerService, utilityService, notificationService) {
+    function HomeComponent(membershipService, offerService, utilityService, notificationService) {
         var _this = _super.call(this, 0, 0, 0) || this;
+        _this.membershipService = membershipService;
         _this.offerService = offerService;
         _this.utilityService = utilityService;
         _this.notificationService = notificationService;
@@ -58,6 +60,9 @@ var HomeComponent = (function (_super) {
             }
         });
     };
+    HomeComponent.prototype.isUserLoggedIn = function () {
+        return this.membershipService.isUserAuthenticated();
+    };
     HomeComponent.prototype.convertDateTime = function (date) {
         return this.utilityService.convertDateTime(date);
     };
@@ -69,7 +74,8 @@ HomeComponent = __decorate([
         templateUrl: './app/components/home.component.html',
         styles: ['app/components/home.css']
     }),
-    __metadata("design:paramtypes", [data_service_1.DataService,
+    __metadata("design:paramtypes", [membership_service_1.MembershipService,
+        data_service_1.DataService,
         utility_service_1.UtilityService,
         notification_service_1.NotificationService])
 ], HomeComponent);

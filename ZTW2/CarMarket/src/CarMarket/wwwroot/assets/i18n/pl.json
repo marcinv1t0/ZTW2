@@ -33,5 +33,8 @@
 	"AIRCOND": "Klimatyzacja",
 	"AIRBAGS": "Poduszki powietrzne",
 	"LOCK": "Centralny zamek",
-	"MARKSCHART": "Oferty według marek samochodów"
+	"MARKSCHART": "Oferty według marek samochodów",
+	"FROM": "Od",
+	"TO": "Do",
+	"FILTER": "Filtruj"
 }

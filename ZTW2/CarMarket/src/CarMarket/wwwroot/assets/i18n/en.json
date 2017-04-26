@@ -33,7 +33,10 @@
 	"AIRCOND": "Air conditioning",
 	"AIRBAGS": "Airbags",
 	"LOCK": "Central lock",
-	"MARKSCHART": "Makes of offered cars"
+	"MARKSCHART": "Makes of offered cars",
+	"FROM": "From",
+	"TO": "To",
+	"FILTER": "Filter"
 	
 
 }

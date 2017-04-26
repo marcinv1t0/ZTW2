@@ -1,5 +1,7 @@
 ﻿<div style="display: block; text-align:center">
-    <div class="col-md-5">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-7">
         <h3>{{ 'MARKSCHART' | translate }}</h3>
         <canvas baseChart
                 [data]="doughnutChartData"
@@ -9,4 +11,6 @@
                 (chartHover)="chartHovered($event)"
                 (chartClick)="chartClicked($event)"></canvas>
     </div>
+        </div>
+        </div>
 </div>

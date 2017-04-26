@@ -20,23 +20,30 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
 var paginated_1 = require("../core/common/paginated");
 var data_service_1 = require("../core/services/data.service");
 var utility_service_1 = require("../core/services/utility.service");
 var notification_service_1 = require("../core/services/notification.service");
 var OfferComponent = (function (_super) {
     __extends(OfferComponent, _super);
-    function OfferComponent(offerService, utilityService, notificationService) {
+    function OfferComponent(offerService, utilityService, notificationService, route, router) {
         var _this = _super.call(this, 0, 0, 0) || this;
         _this.offerService = offerService;
         _this.utilityService = utilityService;
         _this.notificationService = notificationService;
+        _this.route = route;
+        _this.router = router;
         _this._offerAPI = 'api/offer/';
         return _this;
     }
     OfferComponent.prototype.ngOnInit = function () {
+        var _this = this;
+        this.sub = this.route.params.subscribe(function (params) {
+            _this._offerId = params['id']; // (+) converts string 'id' to a number
+        });
         this.offerService.set(this._offerAPI, 3);
-        this.getOffer(6);
+        this.getOffer(this._offerId);
     };
     OfferComponent.prototype.hack = function (val) {
         console.log('Before:');
@@ -71,6 +78,7 @@ OfferComponent = __decorate([
     }),
     __metadata("design:paramtypes", [data_service_1.DataService,
         utility_service_1.UtilityService,
-        notification_service_1.NotificationService])
+        notification_service_1.NotificationService, router_1.ActivatedRoute,
+        router_1.Router])
 ], OfferComponent);
 exports.OfferComponent = OfferComponent;

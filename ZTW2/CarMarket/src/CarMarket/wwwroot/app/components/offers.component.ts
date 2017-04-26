@@ -14,6 +14,12 @@ import { OperationResult } from '../core/domain/operationResult';
 export class OffersComponent extends Paginated implements OnInit {
     private _offerAPI: string = 'api/offer/';
     private _offers: Array<Offer>;
+    private _offersFiltered: Array<Offer>;
+    public _filterYearFrom: number;
+    public _filterYearTo: number;
+    public _filterPriceFrom: number;
+    public _filterPriceTo: number;
+    public _make: string;
 
     constructor(public offerService: DataService,
         public utilityService: UtilityService,
@@ -25,6 +31,54 @@ export class OffersComponent extends Paginated implements OnInit {
         this.offerService.set(this._offerAPI, 3);
         this.getAlbums();
     }
+
+    dropChange(val: any) {
+        this._make = val;
+    }
+
+    filter() {
+        debugger;
+        var fpfnull = false;
+        if (this._filterPriceFrom == null) {
+            this._filterPriceFrom = 0;
+            fpfnull = true;
+        }
+        var fptnull = false;
+        if (this._filterPriceTo == null) {
+            this._filterPriceTo = Number.MAX_SAFE_INTEGER;
+            fptnull = true;
+        }
+        var fyfnull = false;
+        if (this._filterYearFrom == null) {
+            this._filterYearFrom = 0;
+            fyfnull = true;
+        }
+        var fytnull = false;
+        if (this._filterYearTo == null) {
+            this._filterYearTo = Number.MAX_SAFE_INTEGER;
+            fytnull = true;
+        }
+        this._offersFiltered = new Array<Offer>();
+        for (var i = 0; i < this._offers.length; i++) {
+            if (this._offers[i].Year <= this._filterYearTo && this._offers[i].Year >= this._filterYearFrom && this._offers[i].Price <= this._filterPriceTo && this._offers[i].Price >= this._filterPriceFrom) {
+                if (this._make == null || this._offers[i].Make == this._make) {
+                    this._offersFiltered.push(this._offers[i]);
+                }
+            }
+        }
+        if (fpfnull) this._filterPriceFrom = null;
+        if (fptnull) this._filterPriceTo = null;
+        if (fyfnull) this._filterYearFrom = null;
+        if (fytnull) this._filterYearTo = null;
+    }
+
+    public makes = [
+        { value: 'audi', display: 'Audi' },
+        { value: 'aston', display: 'Aston Martin' },
+        { value: 'bmw', display: 'BMW' },
+        { value: 'mercedes', display: 'Mercedes' },
+        { value: 'porsche', display: 'Porsche' }
+    ];
 
     delete(id: number) {
         var _removeResult: OperationResult = new OperationResult(false, '');
@@ -54,6 +108,7 @@ export class OffersComponent extends Paginated implements OnInit {
             .subscribe(res => {
                 var data: any = res.json();
                 this._offers = data;
+                this._offersFiltered = data;
                 /*this._page = data.Page;
                 this._pagesCount = data.TotalPages;
                 this._totalCount = data.TotalCount;*/
