@@ -36,7 +36,8 @@
 	"MARKSCHART": "Makes of offered cars",
 	"FROM": "From",
 	"TO": "To",
-	"FILTER": "Filter"
+	"FILTER": "Filter",
+	"LINECHART": "Years of production of offered cars"
 	
 
 }

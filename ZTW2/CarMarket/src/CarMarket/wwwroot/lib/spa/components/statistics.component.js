@@ -37,6 +37,29 @@ var StatisticsComponent = (function (_super) {
         _this.doughnutChartColors = [{ backgroundColor: ["#b8436d", "#00d9f9", "#a4c73c", "#a4add3", "#224377"] }];
         _this.doughnutChartType = 'doughnut';
         _this.makesMap = new Map();
+        _this.lineChartData = new Array();
+        _this.lineChartLabels = ['>1970', '1971-1980', '1981-1990', '1991-2000', '2001-2010', '>2011'];
+        _this.lineChartType = 'line';
+        _this.options = {
+            responsive: true,
+            maintainAspectRatio: false
+        };
+        _this.lineChartColors = [
+            {
+                backgroundColor: '#a4add3',
+                borderColor: '#224377',
+                pointBackgroundColor: 'rgba(148,159,177,1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+            }
+        ];
+        _this.lineChartOptions = {
+            legend: { display: false },
+            responsive: true,
+            maintainAspectRatio: false,
+            tooltips: { enabled: false }
+        };
         return _this;
     }
     StatisticsComponent.prototype.ngOnInit = function () {
@@ -52,6 +75,12 @@ var StatisticsComponent = (function (_super) {
                 this._offers[_i] = data[_i];
             }*/
             _this._offers = data;
+            var data1 = 0;
+            var data2 = 0;
+            var data3 = 0;
+            var data4 = 0;
+            var data5 = 0;
+            var data6 = 0;
             for (var i = 0; i < _this._offers.length; i++) {
                 if (_this.makesMap.has(_this._offers[i].Make)) {
                     var temp = _this.makesMap.get(_this._offers[i].Make);
@@ -63,10 +92,33 @@ var StatisticsComponent = (function (_super) {
                     _this.makesMap.set(_this._offers[i].Make, 1);
                     _this.doughnutChartLabels.push(_this._offers[i].Make);
                 }
+                var y = _this._offers[i].Year;
+                if (y <= 1970)
+                    data1++;
+                else if (y >= 1971 && y <= 1980)
+                    data2++;
+                else if (y >= 1981 && y <= 1990)
+                    data3++;
+                else if (y >= 1991 && y <= 2000)
+                    data4++;
+                else if (y >= 2001 && y <= 2010)
+                    data5++;
+                else
+                    data6++;
             }
+            var tempdata = new Array();
             for (var i = 0; i < _this.doughnutChartLabels.length; i++) {
-                _this.doughnutChartData.push(_this.makesMap.get(_this.doughnutChartLabels[i]));
+                tempdata.push(_this.makesMap.get(_this.doughnutChartLabels[i]));
             }
+            var tempLineData = new Array();
+            tempLineData.push(data1);
+            tempLineData.push(data2);
+            tempLineData.push(data3);
+            tempLineData.push(data4);
+            tempLineData.push(data5);
+            tempLineData.push(data6);
+            _this.lineChartData = tempLineData;
+            _this.doughnutChartData = tempdata;
             /*this._page = data.Page;
             this._pagesCount = data.TotalPages;
             this._totalCount = data.TotalCount;*/
