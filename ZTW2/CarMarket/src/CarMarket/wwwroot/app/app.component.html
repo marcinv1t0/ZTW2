@@ -20,7 +20,7 @@
                     <a [routerLink]="['newoffer']"><span class="glyphicon glyphicon-plus"></span>&nbsp;{{ 'ADDOFFER' | translate }}</a>
                 </li>
                 <li *ngIf="isUserLoggedIn()">
-                    <a><span class="glyphicon glyphicon-tags"></span>&nbsp;{{ 'YOUROFFERS' | translate }}</a>
+                    <a [routerLink]="['myoffers']"><span class="glyphicon glyphicon-tags"></span>&nbsp;{{ 'YOUROFFERS' | translate }}</a>
                 </li>
                 <li *ngIf="isUserLoggedIn()">
                     <a><span class="glyphicon glyphicon-star"></span>&nbsp;{{ 'FAVOFFERS' | translate }}</a>

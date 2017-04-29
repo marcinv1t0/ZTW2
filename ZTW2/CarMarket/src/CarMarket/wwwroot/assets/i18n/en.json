@@ -37,7 +37,8 @@
 	"FROM": "From",
 	"TO": "To",
 	"FILTER": "Filter",
-	"LINECHART": "Years of production of offered cars"
+	"LINECHART": "Years of production of offered cars",
+	"OFFER": "Offer"
 	
 
 }

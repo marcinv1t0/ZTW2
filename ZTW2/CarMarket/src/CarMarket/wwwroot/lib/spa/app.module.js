@@ -34,6 +34,8 @@ var offer_component_1 = require("./components/offer.component");
 var photos_component_1 = require("./components/photos.component");
 var albums_component_1 = require("./components/albums.component");
 var statistics_component_1 = require("./components/statistics.component");
+var myoffers_component_1 = require("./components/myoffers.component");
+var updateoffer_component_1 = require("./components/updateoffer.component");
 var routes_1 = require("./routes");
 var data_service_1 = require("./core/services/data.service");
 var membership_service_1 = require("./core/services/membership.service");
@@ -71,7 +73,7 @@ AppModule = __decorate([
                 deps: [http_1.Http]
             })
         ],
-        declarations: [app_component_1.AppComponent, album_photos_component_1.AlbumPhotosComponent, home_component_1.HomeComponent, photos_component_1.PhotosComponent, statistics_component_1.StatisticsComponent, albums_component_1.AlbumsComponent, newoffer_component_1.NewOfferComponent, offers_component_1.OffersComponent, offer_component_1.OfferComponent],
+        declarations: [app_component_1.AppComponent, album_photos_component_1.AlbumPhotosComponent, home_component_1.HomeComponent, photos_component_1.PhotosComponent, updateoffer_component_1.UpdateOfferComponent, myoffers_component_1.MyOffersComponent, statistics_component_1.StatisticsComponent, albums_component_1.AlbumsComponent, newoffer_component_1.NewOfferComponent, offers_component_1.OffersComponent, offer_component_1.OfferComponent],
         providers: [data_service_1.DataService, offer_service_1.OfferService, membership_service_1.MembershipService, utility_service_1.UtilityService, notification_service_1.NotificationService,
             { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
             { provide: http_2.RequestOptions, useClass: AppBaseRequestOptions }],

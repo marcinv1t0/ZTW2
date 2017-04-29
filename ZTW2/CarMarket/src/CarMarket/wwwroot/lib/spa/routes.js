@@ -9,6 +9,8 @@ var newoffer_component_1 = require("./components/newoffer.component");
 var offers_component_1 = require("./components/offers.component");
 var statistics_component_1 = require("./components/statistics.component");
 var offer_component_1 = require("./components/offer.component");
+var myoffers_component_1 = require("./components/myoffers.component");
+var updateoffer_component_1 = require("./components/updateoffer.component");
 var appRoutes = [
     {
         path: '',
@@ -50,6 +52,14 @@ var appRoutes = [
     {
         path: 'offers/:id/offer',
         component: offer_component_1.OfferComponent
+    },
+    {
+        path: 'myoffers',
+        component: myoffers_component_1.MyOffersComponent
+    },
+    {
+        path: 'myoffers/:id/offer',
+        component: updateoffer_component_1.UpdateOfferComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

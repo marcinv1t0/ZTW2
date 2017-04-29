@@ -17,6 +17,8 @@ import { OfferComponent } from './components/offer.component';
 import { PhotosComponent } from './components/photos.component';
 import { AlbumsComponent } from './components/albums.component';
 import { StatisticsComponent } from './components/statistics.component';
+import { MyOffersComponent } from './components/myoffers.component';
+import { UpdateOfferComponent } from './components/updateoffer.component';
 import { routing } from './routes';
 
 import { DataService } from './core/services/data.service';
@@ -49,7 +51,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
             deps: [Http]
         })
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent, OfferComponent],
+    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, UpdateOfferComponent, MyOffersComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent, OfferComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],

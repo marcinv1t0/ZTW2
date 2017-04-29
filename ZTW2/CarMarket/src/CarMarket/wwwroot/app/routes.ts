@@ -9,6 +9,8 @@ import { NewOfferComponent } from './components/newoffer.component';
 import {OffersComponent } from './components/offers.component';
 import { StatisticsComponent } from './components/statistics.component';
 import { OfferComponent } from './components/offer.component';
+import { MyOffersComponent } from './components/myoffers.component';
+import { UpdateOfferComponent } from './components/updateoffer.component'
 
 import { accountRoutes, accountRouting } from './components/account/routes';
 
@@ -55,6 +57,14 @@ const appRoutes: Routes = [
     {
         path: 'offers/:id/offer',
         component: OfferComponent
+    },
+    {
+        path: 'myoffers',
+        component: MyOffersComponent
+    },
+    {
+        path: 'myoffers/:id/offer',
+        component: UpdateOfferComponent
     }
 ];
 

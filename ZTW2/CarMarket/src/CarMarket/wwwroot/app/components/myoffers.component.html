@@ -1,0 +1,38 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                {{ 'OFFERS' | translate }}
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/Home']">Home</a>
+                </li>
+                <li class="active">{{ 'OFFERS' | translate }}</li>
+            </ol>
+        </div>
+    </div>
+    <div class="col-md-3 col-sm-6" *ngFor="let offer of _offers">
+        <div class="panel panel-default text-center">
+            <div class="panel-heading">
+                <a class="fancybox" href="/images/{{offer.PhotoUri}}.jpg" title="{{offer.Model}}">
+                    <img class="media-object" src="/images/{{offer.PhotoUri}}.jpg" alt="" style="width:100%" />
+                </a>
+            </div>
+            <div class="panel-body">
+                <h4>{{offer.Make}} {{offer.Model}}</h4>
+                <label>{{ 'YEAR' | translate }}:&nbsp;</label>{{offer.Year}} <br />
+                <label>{{ 'PRICE' | translate }}:&nbsp;</label>{{offer.Price}} PLN<br />
+                <label>{{ 'USER' | translate }}:&nbsp;</label>{{offer.Username}} <br /> <br />
+                <button class="btn btn-primary" [routerLink]="['/myoffers/:id/offer', {id: offer.Id}]">{{ 'DETAILS' | translate }}</button>
+                <button class="btn btn-xs btn-danger" (click)="delete(offer.Id)">
+                    <span class="fa-stack fa-1x">
+                        <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>
+
