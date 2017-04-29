@@ -1,6 +1,8 @@
 ﻿import { Http, Response, Headers } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Offer } from '../domain/offer';
+
 
 @Injectable()
 export class DataService {
@@ -48,6 +50,17 @@ export class DataService {
 
     delete(id: number) {
         return this.http.delete(this._baseUri + id.toString())
+            .map(response => <any>(<Response>response).json())
+    }
+
+    update(offer: Offer, id: number): Observable<void> {
+        debugger;
+        let headers = new Headers();
+        headers.append('Content-Type', 'application/json');
+
+        return this.http.put(this._baseUri, JSON.stringify(offer), {
+            headers: headers
+        })
             .map(response => <any>(<Response>response).json())
     }
 

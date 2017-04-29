@@ -47,6 +47,15 @@ var DataService = (function () {
         return this.http.delete(this._baseUri + id.toString())
             .map(function (response) { return response.json(); });
     };
+    DataService.prototype.update = function (offer, id) {
+        debugger;
+        var headers = new http_1.Headers();
+        headers.append('Content-Type', 'application/json');
+        return this.http.put(this._baseUri, JSON.stringify(offer), {
+            headers: headers
+        })
+            .map(function (response) { return response.json(); });
+    };
     DataService.prototype.deleteResource = function (resource) {
         return this.http.delete(resource)
             .map(function (response) { return response.json(); });

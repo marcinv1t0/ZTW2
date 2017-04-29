@@ -19,6 +19,7 @@ export class UpdateOfferComponent extends Paginated implements OnInit {
     private _offerId: string;
     private sub: Subscription;
     private _offer: Offer;
+    private _offerNumber: number;
 
 
     constructor(public dataService: DataService,
@@ -38,8 +39,20 @@ export class UpdateOfferComponent extends Paginated implements OnInit {
         });
     }
 
-    save() {
-
+    save(id: number) {
+            //this.slimLoader.start();
+            var edittedOffer = this._offer;
+            this.dataService.update(edittedOffer, id)
+                .subscribe(() => {
+                    this._offer = edittedOffer;
+                    this.notificationService.printSuccessMessage('Oferta zmodyfikowana');
+                    //this.slimLoader.complete();
+                },
+                error => {
+                    this.notificationService.printErrorMessage('Nie udało się zapisać zmian');
+                    this.notificationService.printErrorMessage(error);
+                    //this.slimLoader.complete();
+                });
     }
 
     getOffersDetails(): void {

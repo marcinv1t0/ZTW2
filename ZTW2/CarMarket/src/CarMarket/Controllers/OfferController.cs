@@ -195,7 +195,30 @@ namespace CarMarket.Controllers
             return _result;
         }
 
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody]OfferViewModel offer)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
+            Offer _offerDb = _offerRepository.GetSingle(id);
+
+            if (_offerDb == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _offerDb.Description = offer.Description;
+                _offerRepository.Commit();
+            }
+
+            offer = Mapper.Map<Offer, OfferViewModel>(_offerDb);
+
+            return new NoContentResult();
+        }
 
     }
 }

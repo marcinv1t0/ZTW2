@@ -77,14 +77,14 @@
                 {{ 'CARDESC' | translate }}
             </div>
             <div class="panel-body">
-                <form>
-                    <input type="text"  class="form-control" style="width:100%;" value="{{_offer?.Description}}" id="description" name="description" />
+                <form *ngIf="_offer != null">
+                    <input type="text"  class="form-control" style="width:100%;" [(ngModel)]="_offer.Description" id="description" name="description" />
                 </form>
             </div>
         </div>
     </div>
     <div class="col-md-12">
-        <button class="btn btn-primary pull-right" style="margin-bottom:30px; width:20%" (click)="save()">Zapisz</button>
+        <button class="btn btn-primary pull-right" style="margin-bottom:30px; width:20%" (click)="save(_offer.Id)">Zapisz</button>
     </div>
     <hr>
 </div>
