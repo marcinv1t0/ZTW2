@@ -11,6 +11,7 @@ import { StatisticsComponent } from './components/statistics.component';
 import { OfferComponent } from './components/offer.component';
 import { MyOffersComponent } from './components/myoffers.component';
 import { UpdateOfferComponent } from './components/updateoffer.component'
+import { AdminComponent } from './components/admin.component'
 
 import { accountRoutes, accountRouting } from './components/account/routes';
 
@@ -65,6 +66,10 @@ const appRoutes: Routes = [
     {
         path: 'myoffers/:id/offer',
         component: UpdateOfferComponent
+    },
+{
+        path: 'admin',
+        component: AdminComponent
     }
 ];
 

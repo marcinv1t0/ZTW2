@@ -24,7 +24,7 @@
                 <label>{{ 'YEAR' | translate }}:&nbsp;</label>{{offer.Year}} <br />
                 <label>{{ 'PRICE' | translate }}:&nbsp;</label>{{offer.Price}} PLN<br />
                 <label>{{ 'USER' | translate }}:&nbsp;</label>{{offer.Username}} <br /> <br />
-                <button class="btn btn-primary" [routerLink]="['/myoffers/:id/offer', {id: offer.Id}]">{{ 'DETAILS' | translate }}</button>
+                <button class="btn btn-primary" [routerLink]="['/myoffers/:id/offer', {id: offer.Id}]">{{ 'EDIT' | translate }}</button>
                 <button class="btn btn-xs btn-danger" (click)="delete(offer.Id)">
                     <span class="fa-stack fa-1x">
                         <i class="fa fa-remove fa-stack-1x fa-inverse"></i>

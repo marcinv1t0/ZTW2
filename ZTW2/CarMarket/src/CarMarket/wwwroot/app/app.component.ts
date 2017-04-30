@@ -40,6 +40,7 @@ export class AppComponent implements OnInit {
         if (this.isUserLoggedIn()) {
             var _user = this.membershipService.getLoggedInUser();
             return _user.Username;
+           
         }
         else
             return 'Logowanie';

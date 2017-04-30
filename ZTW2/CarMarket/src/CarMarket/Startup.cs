@@ -72,6 +72,7 @@ namespace CarMarket
             services.AddScoped<IMembershipService, MembershipService>();
             services.AddScoped<IEncryptionService, EncryptionService>();
             services.AddScoped<IOfferService, OfferService>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddAuthentication();
 

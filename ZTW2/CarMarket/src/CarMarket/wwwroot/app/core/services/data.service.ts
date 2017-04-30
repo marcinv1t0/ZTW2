@@ -54,7 +54,7 @@ export class DataService {
     }
 
     update(offer: Offer, id: number): Observable<void> {
-        debugger;
+        
         let headers = new Headers();
         headers.append('Content-Type', 'application/json');
 

@@ -71,7 +71,7 @@ export class NewOfferComponent implements OnInit {
 
 
     submit(): void {
-        debugger;
+        
         
         var _registrationResult: OperationResult = new OperationResult(false, '');
         this._newOffer.PhotoUri = this._newOffer.Model;

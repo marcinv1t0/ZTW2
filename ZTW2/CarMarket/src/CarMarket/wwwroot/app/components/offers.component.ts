@@ -37,7 +37,7 @@ export class OffersComponent extends Paginated implements OnInit {
     }
 
     filter() {
-        debugger;
+        
         var fpfnull = false;
         if (this._filterPriceFrom == null) {
             this._filterPriceFrom = 0;

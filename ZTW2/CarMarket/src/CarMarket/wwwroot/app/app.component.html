@@ -28,6 +28,9 @@
                 <li>
                     <a [routerLink]="['statistics']"><span class="glyphicon glyphicon-stats"></span>&nbsp;{{ 'STATS' | translate }}</a>
                 </li>
+                <li *ngIf="isUserLoggedIn()">
+                    <a [routerLink]="['admin']"><span class="glyphicon glyphicon-cog"></span>&nbsp;{{ 'ADMINPANEL' | translate }}</a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

@@ -37,7 +37,7 @@ export class HomeComponent extends Paginated implements OnInit{
                 /*this._page = data.Page;
                 this._pagesCount = data.TotalPages;
                 this._totalCount = data.TotalCount;*/
-                debugger;
+                
             },
             error => {
 

@@ -32,6 +32,15 @@ export class MembershipService {
 
     isUserAuthenticated(): boolean {
         var _user: any = localStorage.getItem('user');
+
+        if (_user != null)
+            return true;
+        else
+            return false;
+    }
+
+    isAdmin(): boolean {
+        var _user: any = localStorage.getItem('user');
         if (_user != null)
             return true;
         else
