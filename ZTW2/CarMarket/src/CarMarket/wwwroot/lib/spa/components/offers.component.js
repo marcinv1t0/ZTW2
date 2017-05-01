@@ -25,14 +25,19 @@ var data_service_1 = require("../core/services/data.service");
 var utility_service_1 = require("../core/services/utility.service");
 var notification_service_1 = require("../core/services/notification.service");
 var operationResult_1 = require("../core/domain/operationResult");
+var membership_service_1 = require("../core/services/membership.service");
 var OffersComponent = (function (_super) {
     __extends(OffersComponent, _super);
-    function OffersComponent(offerService, utilityService, notificationService) {
+    function OffersComponent(membershipService, userService, offerService, utilityService, notificationService) {
         var _this = _super.call(this, 0, 0, 0) || this;
+        _this.membershipService = membershipService;
+        _this.userService = userService;
         _this.offerService = offerService;
         _this.utilityService = utilityService;
         _this.notificationService = notificationService;
         _this._offerAPI = 'api/offer/';
+        _this._userAPI = 'api/user/';
+        _this.result = false;
         _this.makes = [
             { value: 'audi', display: 'Audi' },
             { value: 'aston', display: 'Aston Martin' },
@@ -45,6 +50,43 @@ var OffersComponent = (function (_super) {
     OffersComponent.prototype.ngOnInit = function () {
         this.offerService.set(this._offerAPI, 3);
         this.getAlbums();
+        this.userService.set(this._userAPI, 3);
+        this._username = this.getUsername();
+        this._role = this.getUserRole(this._username);
+        this.result = (this._role.Name == "Admin");
+    };
+    OffersComponent.prototype.hack = function (val) {
+        console.log('Before:');
+        console.log(val);
+        return val;
+    };
+    OffersComponent.prototype.isUserLoggedIn = function () {
+        return this.membershipService.isUserAuthenticated();
+    };
+    OffersComponent.prototype.getUsername = function () {
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            return _user.Username;
+        }
+        else
+            return "";
+    };
+    OffersComponent.prototype.getUserRole = function (name) {
+        var _this = this;
+        var data;
+        this.userService.getByUsername(name)
+            .subscribe(function (res) {
+            data = res.json();
+        }, function (error) {
+            if (error.status == 401 || error.status == 404) {
+                _this.notificationService.printErrorMessage('Authentication required');
+                _this.utilityService.navigateToSignIn();
+            }
+        });
+        return data;
+    };
+    OffersComponent.prototype.isAdmin = function () {
+        return this.result;
     };
     OffersComponent.prototype.dropChange = function (val) {
         this._make = val;
@@ -134,7 +176,8 @@ OffersComponent = __decorate([
         selector: 'offers',
         templateUrl: './app/components/offers.component.html'
     }),
-    __metadata("design:paramtypes", [data_service_1.DataService,
+    __metadata("design:paramtypes", [membership_service_1.MembershipService, data_service_1.DataService,
+        data_service_1.DataService,
         utility_service_1.UtilityService,
         notification_service_1.NotificationService])
 ], OffersComponent);

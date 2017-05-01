@@ -15,18 +15,43 @@ var user_1 = require("../../core/domain/user");
 var operationResult_1 = require("../../core/domain/operationResult");
 var membership_service_1 = require("../../core/services/membership.service");
 var notification_service_1 = require("../../core/services/notification.service");
+var data_service_1 = require("../../core/services/data.service");
+var utility_service_1 = require("../../core/services/utility.service");
 var LoginComponent = (function () {
-    function LoginComponent(membershipService, notificationService, router) {
+    function LoginComponent(userService, membershipService, utilityService, notificationService, router) {
+        this.userService = userService;
         this.membershipService = membershipService;
+        this.utilityService = utilityService;
         this.notificationService = notificationService;
         this.router = router;
+        this._userAPI = 'api/user/';
     }
     LoginComponent.prototype.ngOnInit = function () {
-        this._user = new user_1.User('', '');
+        this._user = new user_1.User(0, '', '', '');
+        this.userService.set(this._userAPI, 3);
+    };
+    LoginComponent.prototype.getUserRole = function (name) {
+        var _this = this;
+        var data;
+        this.userService.getByUsername(name)
+            .subscribe(function (res) {
+            data = res.json();
+            _this._user.Role = data.Name;
+            _this.authenticate();
+        }, function (error) {
+            if (error.status == 401 || error.status == 404) {
+                _this.notificationService.printErrorMessage('Authentication required');
+                _this.utilityService.navigateToSignIn();
+            }
+        });
     };
     LoginComponent.prototype.login = function () {
+        this.getUserRole(this._user.Username);
+    };
+    LoginComponent.prototype.authenticate = function () {
         var _this = this;
         var _authenticationResult = new operationResult_1.OperationResult(false, '');
+        debugger;
         this.membershipService.login(this._user)
             .subscribe(function (res) {
             _authenticationResult.Succeeded = res.Succeeded;
@@ -50,7 +75,8 @@ LoginComponent = __decorate([
         selector: 'albums',
         templateUrl: './app/components/account/login.component.html'
     }),
-    __metadata("design:paramtypes", [membership_service_1.MembershipService,
+    __metadata("design:paramtypes", [data_service_1.DataService, membership_service_1.MembershipService,
+        utility_service_1.UtilityService,
         notification_service_1.NotificationService,
         router_1.Router])
 ], LoginComponent);

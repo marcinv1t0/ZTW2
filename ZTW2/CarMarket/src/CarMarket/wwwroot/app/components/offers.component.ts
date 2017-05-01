@@ -1,10 +1,12 @@
 ﻿import { Component, OnInit} from '@angular/core';
 import { Offer } from '../core/domain/offer';
+import { Role } from '../core/domain/role';
 import { Paginated } from '../core/common/paginated';
 import { DataService } from '../core/services/data.service';
 import { UtilityService } from '../core/services/utility.service';
 import { NotificationService } from '../core/services/notification.service';
 import { OperationResult } from '../core/domain/operationResult';
+import { MembershipService } from '../core/services/membership.service';
 
 
 @Component({
@@ -13,6 +15,7 @@ import { OperationResult } from '../core/domain/operationResult';
 })
 export class OffersComponent extends Paginated implements OnInit {
     private _offerAPI: string = 'api/offer/';
+    private _userAPI: string = 'api/user/';
     private _offers: Array<Offer>;
     private _offersFiltered: Array<Offer>;
     public _filterYearFrom: number;
@@ -20,16 +23,73 @@ export class OffersComponent extends Paginated implements OnInit {
     public _filterPriceFrom: number;
     public _filterPriceTo: number;
     public _make: string;
+    private _username: string;
+    private _role: Role;
+    private result: boolean = false;
 
-    constructor(public offerService: DataService,
+    constructor(public membershipService: MembershipService, public userService: DataService,
+        public offerService: DataService,
         public utilityService: UtilityService,
         public notificationService: NotificationService) {
         super(0, 0, 0);
+        
+        
     }
 
     ngOnInit() {
         this.offerService.set(this._offerAPI, 3);
         this.getAlbums();
+        this.userService.set(this._userAPI, 3);
+        this._username = this.getUsername();  
+        this._role = this.getUserRole(this._username); 
+        this.result = (this._role.Name  == "Admin");
+        
+    }
+
+    hack(val) {
+        console.log('Before:');
+        console.log(val);
+        return val;
+       
+    }
+    isUserLoggedIn(): boolean {
+        return this.membershipService.isUserAuthenticated();
+    }
+
+     getUsername(): string {
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            return _user.Username;
+           
+        }
+        else
+            return "";
+    }
+
+    
+
+    getUserRole(name: string): Role {
+        var data: any;
+        this.userService.getByUsername(name)
+            .subscribe(res => {
+                data = res.json();
+                
+               
+            },
+            error => {
+
+                if (error.status == 401 || error.status == 404) {
+                    this.notificationService.printErrorMessage('Authentication required');
+                    this.utilityService.navigateToSignIn();
+                }
+            });
+        return data;
+    }
+
+
+    isAdmin(): boolean {      
+        
+        return this.result;
     }
 
     dropChange(val: any) {

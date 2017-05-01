@@ -22,18 +22,22 @@ namespace CarMarket.Controllers
         IUserRepository _userRepository;
         ILoggingRepository _loggingRepository;
         IUserService _userService;
-
+        IRoleRepository _roleRepository;
+        private readonly IUserRoleRepository _userRoleRepository;
 
 
         public UserController(IAuthorizationService authorizationService,
                                 IUserRepository userRepository,
+                                IRoleRepository roleRepository,
                                 ILoggingRepository loggingRepository,
-                                IUserService userService)
+                                IUserService userService, IUserRoleRepository userRoleRepository)
         {
             _authorizationService = authorizationService;
             _userRepository = userRepository;
             _loggingRepository = loggingRepository;
             _userService = userService;
+            _roleRepository = roleRepository;
+            _userRoleRepository = userRoleRepository;
         }
 
         [HttpGet]
@@ -52,6 +56,7 @@ namespace CarMarket.Controllers
                 
 
                 _users = _userRepository.GetAll().ToList();
+                
 
                 _totalUsers = _userRepository.GetAll().Count();
 
@@ -68,10 +73,40 @@ namespace CarMarket.Controllers
             return new ObjectResult(_users);
         }
 
-        
 
-        
 
-        
+        [HttpGet("{name}")]
+        public IActionResult Get(string name)
+        {
+
+
+            Role _role = null;
+            String result = "User";
+
+            try
+            {
+
+
+                List<Role> _roles = _userRepository.GetUserRoles(name).ToList();
+                foreach (Role role in _roles)
+                {
+                    if (role.Name == "Admin")
+                    {
+                        _role = role;
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+            return new ObjectResult(_role);
+        }
+
+
+
     }
 }

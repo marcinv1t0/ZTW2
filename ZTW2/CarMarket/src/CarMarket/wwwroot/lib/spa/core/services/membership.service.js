@@ -24,6 +24,7 @@ var MembershipService = (function () {
         return this.accountService.post(JSON.stringify(newUser));
     };
     MembershipService.prototype.login = function (creds) {
+        debugger;
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
     };
@@ -49,7 +50,15 @@ var MembershipService = (function () {
         var _user;
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = new user_1.User(_userData.Username, _userData.Password);
+            _user = new user_1.User(_userData.Id, _userData.Username, _userData.Role, _userData.Password);
+        }
+        return _user;
+    };
+    MembershipService.prototype.getLoggedInUserWithId = function () {
+        var _user;
+        if (this.isUserAuthenticated()) {
+            var _userData = JSON.parse(localStorage.getItem('user'));
+            _user = new user_1.User(_userData.Id, _userData.Username, _userData.Role, _userData.Password);
         }
         return _user;
     };

@@ -35,6 +35,12 @@ var DataService = (function () {
         return this.http.get(uri)
             .map(function (response) { return response; });
     };
+    DataService.prototype.getByUsername = function (username) {
+        var uri = this._baseUri + username;
+        //debugger;
+        return this.http.get(uri)
+            .map(function (response) { return response; });
+    };
     DataService.prototype.post = function (data, mapJson) {
         if (mapJson === void 0) { mapJson = true; }
         if (mapJson)

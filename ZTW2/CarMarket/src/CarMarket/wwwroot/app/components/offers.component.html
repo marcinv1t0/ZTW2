@@ -68,7 +68,7 @@
                     <label>{{ 'PRICE' | translate }}:&nbsp;</label>{{offer.Price}} PLN<br />
                     <label>{{ 'USER' | translate }}:&nbsp;</label>{{offer.Username}} <br /> <br />
                     <button class="btn btn-primary" [routerLink]="['/offers/:id/offer', {id: offer.Id}]">{{ 'DETAILS' | translate }}</button>
-                    <button class="btn btn-xs btn-danger" (click)="delete(offer.Id)">
+                    <button *ngIf="isAdmin()" class="btn btn-xs btn-danger" (click)="delete(offer.Id)">
                         <span class="fa-stack fa-1x">
                             <i class="fa fa-remove fa-stack-1x fa-inverse"></i>
                         </span>

@@ -21,6 +21,7 @@ export class MembershipService {
     }
 
     login(creds: User) {
+        debugger;
         this.accountService.set(this._accountLoginAPI);
         return this.accountService.post(JSON.stringify(creds));
     }
@@ -32,7 +33,6 @@ export class MembershipService {
 
     isUserAuthenticated(): boolean {
         var _user: any = localStorage.getItem('user');
-
         if (_user != null)
             return true;
         else
@@ -52,7 +52,18 @@ export class MembershipService {
 
         if (this.isUserAuthenticated()) {
             var _userData = JSON.parse(localStorage.getItem('user'));
-            _user = new User(_userData.Username, _userData.Password);
+            _user = new User(_userData.Id, _userData.Username, _userData.Role ,_userData.Password);
+        }
+
+        return _user;
+    }
+
+    getLoggedInUserWithId(): User {
+        var _user: User;
+
+        if (this.isUserAuthenticated()) {
+            var _userData = JSON.parse(localStorage.getItem('user'));
+            _user = new User(_userData.Id, _userData.Username, _userData.Role ,_userData.Password);
         }
 
         return _user;

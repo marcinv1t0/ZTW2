@@ -40,6 +40,13 @@ export class DataService {
             .map(response => (<Response>response));
     }
 
+    getByUsername(username: string) {
+        var uri = this._baseUri + username;
+        //debugger;
+        return this.http.get(uri)
+            .map(response => (<Response>response));
+    }
+
     post(data?: any, mapJson: boolean = true) {
         if (mapJson)
             return this.http.post(this._baseUri, data)
