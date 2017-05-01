@@ -11,6 +11,7 @@ var statistics_component_1 = require("./components/statistics.component");
 var offer_component_1 = require("./components/offer.component");
 var myoffers_component_1 = require("./components/myoffers.component");
 var updateoffer_component_1 = require("./components/updateoffer.component");
+var admin_component_1 = require("./components/admin.component");
 var appRoutes = [
     {
         path: '',
@@ -60,6 +61,10 @@ var appRoutes = [
     {
         path: 'myoffers/:id/offer',
         component: updateoffer_component_1.UpdateOfferComponent
+    },
+    {
+        path: 'admin',
+        component: admin_component_1.AdminComponent
     }
 ];
 exports.routing = router_1.RouterModule.forRoot(appRoutes);

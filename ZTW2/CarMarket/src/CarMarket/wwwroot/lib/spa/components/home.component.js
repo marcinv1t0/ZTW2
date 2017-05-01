@@ -52,7 +52,6 @@ var HomeComponent = (function (_super) {
             /*this._page = data.Page;
             this._pagesCount = data.TotalPages;
             this._totalCount = data.TotalCount;*/
-            debugger;
         }, function (error) {
             if (error.status == 401 || error.status == 404) {
                 _this.notificationService.printErrorMessage('Authentication required');

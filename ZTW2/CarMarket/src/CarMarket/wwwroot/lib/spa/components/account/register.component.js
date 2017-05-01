@@ -26,7 +26,6 @@ var RegisterComponent = (function () {
     };
     RegisterComponent.prototype.register = function () {
         var _this = this;
-        debugger;
         var _registrationResult = new operationResult_1.OperationResult(false, '');
         this.membershipService.register(this._newUser)
             .subscribe(function (res) {

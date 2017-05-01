@@ -50,7 +50,6 @@ var OffersComponent = (function (_super) {
         this._make = val;
     };
     OffersComponent.prototype.filter = function () {
-        debugger;
         var fpfnull = false;
         if (this._filterPriceFrom == null) {
             this._filterPriceFrom = 0;

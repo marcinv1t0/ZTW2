@@ -1,0 +1,52 @@
+﻿<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">
+                Oferty
+            </h1>
+            <ol class="breadcrumb">
+                <li>
+                    <a [routerLink]="['/Home']">Home</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/offers']">Oferty</a>
+                </li>
+                <li class="active">Oferta</li>
+            </ol>
+        </div>
+    </div>
+
+   
+    
+    <div class="col-md-12">
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                {{ 'USERS' | translate }}
+            </div>
+
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        
+                        </thead>
+                        <tbody>
+                            <tr   *ngFor="let user of _users">
+                                <td>{{user.Username}}</td>
+                                <td>{{user.Email}}</td>
+                            
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <hr>
+</div>

@@ -48,7 +48,6 @@ var DataService = (function () {
             .map(function (response) { return response.json(); });
     };
     DataService.prototype.update = function (offer, id) {
-        debugger;
         var headers = new http_1.Headers();
         headers.append('Content-Type', 'application/json');
         return this.http.put(this._baseUri, JSON.stringify(offer), {

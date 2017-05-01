@@ -120,7 +120,6 @@ var NewOfferComponent = (function () {
     };
     NewOfferComponent.prototype.submit = function () {
         var _this = this;
-        debugger;
         var _registrationResult = new operationResult_1.OperationResult(false, '');
         this._newOffer.PhotoUri = this._newOffer.Model;
         this.offersService.register(this._newOffer)

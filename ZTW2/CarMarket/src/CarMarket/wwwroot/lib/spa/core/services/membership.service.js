@@ -38,6 +38,13 @@ var MembershipService = (function () {
         else
             return false;
     };
+    MembershipService.prototype.isAdmin = function () {
+        var _user = localStorage.getItem('user');
+        if (_user != null)
+            return true;
+        else
+            return false;
+    };
     MembershipService.prototype.getLoggedInUser = function () {
         var _user;
         if (this.isUserAuthenticated()) {
