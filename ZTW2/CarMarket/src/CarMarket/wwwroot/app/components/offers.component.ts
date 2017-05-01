@@ -24,8 +24,7 @@ export class OffersComponent extends Paginated implements OnInit {
     public _filterPriceTo: number;
     public _make: string;
     private _username: string;
-    private _role: Role;
-    private result: boolean = false;
+    
 
     constructor(public membershipService: MembershipService, public userService: DataService,
         public offerService: DataService,
@@ -41,8 +40,7 @@ export class OffersComponent extends Paginated implements OnInit {
         this.getAlbums();
         this.userService.set(this._userAPI, 3);
         this._username = this.getUsername();  
-        this._role = this.getUserRole(this._username); 
-        this.result = (this._role.Name  == "Admin");
+        
         
     }
 
@@ -66,31 +64,23 @@ export class OffersComponent extends Paginated implements OnInit {
             return "";
     }
 
+    isAdmin(): boolean {
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            if (_user.Role == "Admin"){
+                return true;
+            }else{
+                 return false;
+            }
+           
+        }
+        else
+            return false;
+    }
+
     
 
-    getUserRole(name: string): Role {
-        var data: any;
-        this.userService.getByUsername(name)
-            .subscribe(res => {
-                data = res.json();
-                
-               
-            },
-            error => {
-
-                if (error.status == 401 || error.status == 404) {
-                    this.notificationService.printErrorMessage('Authentication required');
-                    this.utilityService.navigateToSignIn();
-                }
-            });
-        return data;
-    }
-
-
-    isAdmin(): boolean {      
-        
-        return this.result;
-    }
+    
 
     dropChange(val: any) {
         this._make = val;

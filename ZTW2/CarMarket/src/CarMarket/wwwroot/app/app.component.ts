@@ -31,6 +31,20 @@ export class AppComponent implements OnInit {
     langOnClick() {
         
     }
+    
+    isAdmin(): boolean {
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            if (_user.Role == "Admin"){
+                return true;
+            }else{
+                 return false;
+            }
+           
+        }
+        else
+            return false;
+    }
 
     isUserLoggedIn(): boolean {
         return this.membershipService.isUserAuthenticated();

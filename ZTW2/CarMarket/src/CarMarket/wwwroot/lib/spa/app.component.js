@@ -30,6 +30,19 @@ var AppComponent = (function () {
     AppComponent.prototype.ngOnInit = function () { };
     AppComponent.prototype.langOnClick = function () {
     };
+    AppComponent.prototype.isAdmin = function () {
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            if (_user.Role == "Admin") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else
+            return false;
+    };
     AppComponent.prototype.isUserLoggedIn = function () {
         return this.membershipService.isUserAuthenticated();
     };

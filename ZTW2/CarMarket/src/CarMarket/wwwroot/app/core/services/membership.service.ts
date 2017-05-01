@@ -41,7 +41,7 @@ export class MembershipService {
 
     isAdmin(): boolean {
         var _user: any = localStorage.getItem('user');
-        if (_user != null)
+        if (_user != null && _user.Role == "Admin")
             return true;
         else
             return false;

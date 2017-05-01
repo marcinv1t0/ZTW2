@@ -28,7 +28,7 @@
                 <li>
                     <a [routerLink]="['statistics']"><span class="glyphicon glyphicon-stats"></span>&nbsp;{{ 'STATS' | translate }}</a>
                 </li>
-                <li *ngIf="isUserLoggedIn()">
+                <li *ngIf="isAdmin()">
                     <a [routerLink]="['admin']"><span class="glyphicon glyphicon-cog"></span>&nbsp;{{ 'ADMINPANEL' | translate }}</a>
                 </li>
             </ul>

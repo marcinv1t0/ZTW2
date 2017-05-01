@@ -37,7 +37,6 @@ var OffersComponent = (function (_super) {
         _this.notificationService = notificationService;
         _this._offerAPI = 'api/offer/';
         _this._userAPI = 'api/user/';
-        _this.result = false;
         _this.makes = [
             { value: 'audi', display: 'Audi' },
             { value: 'aston', display: 'Aston Martin' },
@@ -52,8 +51,6 @@ var OffersComponent = (function (_super) {
         this.getAlbums();
         this.userService.set(this._userAPI, 3);
         this._username = this.getUsername();
-        this._role = this.getUserRole(this._username);
-        this.result = (this._role.Name == "Admin");
     };
     OffersComponent.prototype.hack = function (val) {
         console.log('Before:');
@@ -71,22 +68,18 @@ var OffersComponent = (function (_super) {
         else
             return "";
     };
-    OffersComponent.prototype.getUserRole = function (name) {
-        var _this = this;
-        var data;
-        this.userService.getByUsername(name)
-            .subscribe(function (res) {
-            data = res.json();
-        }, function (error) {
-            if (error.status == 401 || error.status == 404) {
-                _this.notificationService.printErrorMessage('Authentication required');
-                _this.utilityService.navigateToSignIn();
-            }
-        });
-        return data;
-    };
     OffersComponent.prototype.isAdmin = function () {
-        return this.result;
+        if (this.isUserLoggedIn()) {
+            var _user = this.membershipService.getLoggedInUser();
+            if (_user.Role == "Admin") {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
+        else
+            return false;
     };
     OffersComponent.prototype.dropChange = function (val) {
         this._make = val;

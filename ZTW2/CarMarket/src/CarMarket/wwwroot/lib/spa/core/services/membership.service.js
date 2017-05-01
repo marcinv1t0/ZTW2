@@ -41,7 +41,7 @@ var MembershipService = (function () {
     };
     MembershipService.prototype.isAdmin = function () {
         var _user = localStorage.getItem('user');
-        if (_user != null)
+        if (_user != null && _user.Role == "Admin")
             return true;
         else
             return false;

@@ -18,7 +18,7 @@ export class AdminComponent extends Paginated implements OnInit {
     private _user: string;
     private _userAPI: string = 'api/user/';
     private _username: string;
-    private _role: Role;
+    
 
 
     constructor(public membershipService: MembershipService, public userService: DataService,
@@ -30,7 +30,8 @@ export class AdminComponent extends Paginated implements OnInit {
 
     ngOnInit() {     
         this.userService.set(this._userAPI, 3);
-        this.getUsers();   
+        this.getUsers();
+        
         
     }
 
@@ -44,28 +45,6 @@ export class AdminComponent extends Paginated implements OnInit {
             return "";
     }
 
-    isAdmin(): boolean {
-        this._username = this.getUsername();  
-        this.getUserRole(this._username); 
-        debugger;
-        return this._role.Name == "Admin";
-    }
-
-    getUserRole(name: string): void {
-        this.userService.getByUsername(name)
-            .subscribe(res => {
-                var data: any = res.json();
-                this._role = data;
-               
-            },
-            error => {
-
-                if (error.status == 401 || error.status == 404) {
-                    this.notificationService.printErrorMessage('Authentication required');
-                    this.utilityService.navigateToSignIn();
-                }
-            });
-    }
     
     isUserLoggedIn(): boolean {
         return this.membershipService.isUserAuthenticated();

@@ -80,7 +80,9 @@ namespace CarMarket.Controllers
         {
 
 
-            Role _role = null;
+            Role _role = new Entities.Role();
+            _role.Id = 0;
+            _role.Name = "User";
             String result = "User";
 
             try
