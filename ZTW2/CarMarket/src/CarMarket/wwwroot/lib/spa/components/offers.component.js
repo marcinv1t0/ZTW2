@@ -126,6 +126,7 @@ var OffersComponent = (function (_super) {
         var _this = this;
         var _removeResult = new operationResult_1.OperationResult(false, '');
         this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?', function () {
+            debugger;
             _this.offerService.delete(id)
                 .subscribe(function (res) {
                 _removeResult.Succeeded = res.Succeeded;
@@ -148,10 +149,6 @@ var OffersComponent = (function (_super) {
             var data = res.json();
             _this._offers = data;
             _this._offersFiltered = data;
-            /*this._page = data.Page;
-            this._pagesCount = data.TotalPages;
-            this._totalCount = data.TotalCount;*/
-            //debugger;
         }, function (error) {
             if (error.status == 401 || error.status == 404) {
                 _this.notificationService.printErrorMessage('Authentication required');
@@ -169,7 +166,8 @@ OffersComponent = __decorate([
         selector: 'offers',
         templateUrl: './app/components/offers.component.html'
     }),
-    __metadata("design:paramtypes", [membership_service_1.MembershipService, data_service_1.DataService,
+    __metadata("design:paramtypes", [membership_service_1.MembershipService,
+        data_service_1.DataService,
         data_service_1.DataService,
         utility_service_1.UtilityService,
         notification_service_1.NotificationService])

@@ -26,7 +26,8 @@ export class OffersComponent extends Paginated implements OnInit {
     private _username: string;
     
 
-    constructor(public membershipService: MembershipService, public userService: DataService,
+    constructor(public membershipService: MembershipService, 
+        public userService: DataService,
         public offerService: DataService,
         public utilityService: UtilityService,
         public notificationService: NotificationService) {
@@ -131,10 +132,12 @@ export class OffersComponent extends Paginated implements OnInit {
     ];
 
     delete(id: number) {
+       
         var _removeResult: OperationResult = new OperationResult(false, '');
 
         this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?',
             () => {
+                debugger;
                 this.offerService.delete(id)
                     .subscribe(res => {
                         _removeResult.Succeeded = res.Succeeded;
@@ -158,11 +161,7 @@ export class OffersComponent extends Paginated implements OnInit {
             .subscribe(res => {
                 var data: any = res.json();
                 this._offers = data;
-                this._offersFiltered = data;
-                /*this._page = data.Page;
-                this._pagesCount = data.TotalPages;
-                this._totalCount = data.TotalCount;*/
-                //debugger;
+                this._offersFiltered = data;        
             },
             error => {
 

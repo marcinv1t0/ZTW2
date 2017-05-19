@@ -21,6 +21,7 @@ namespace CarMarket.Controllers
         private readonly IAuthorizationService _authorizationService;
         IUserRepository _userRepository;
         ILoggingRepository _loggingRepository;
+        IOfferRepository _offerRepository;
         IUserService _userService;
         IRoleRepository _roleRepository;
         private readonly IUserRoleRepository _userRoleRepository;
@@ -29,15 +30,51 @@ namespace CarMarket.Controllers
         public UserController(IAuthorizationService authorizationService,
                                 IUserRepository userRepository,
                                 IRoleRepository roleRepository,
+                                IOfferRepository offerRepository,
                                 ILoggingRepository loggingRepository,
                                 IUserService userService, IUserRoleRepository userRoleRepository)
         {
             _authorizationService = authorizationService;
             _userRepository = userRepository;
+            _offerRepository = offerRepository;
             _loggingRepository = loggingRepository;
             _userService = userService;
             _roleRepository = roleRepository;
             _userRoleRepository = userRoleRepository;
+        }
+
+        [HttpDelete("{id:int}")]
+        public IActionResult Delete(int id)
+        {
+            IActionResult _result = new ObjectResult(false);
+            GenericResult _removeResult = null;
+
+            try
+            {
+                Offer _offerToRemove = this._offerRepository.GetSingle(id);
+                this._offerRepository.Delete(_offerToRemove);
+                this._offerRepository.Commit();
+
+                _removeResult = new GenericResult()
+                {
+                    Succeeded = true,
+                    Message = "Offer removed."
+                };
+            }
+            catch (Exception ex)
+            {
+                _removeResult = new GenericResult()
+                {
+                    Succeeded = false,
+                    Message = ex.Message
+                };
+
+                _loggingRepository.Add(new Error() { Message = ex.Message, StackTrace = ex.StackTrace, DateCreated = DateTime.Now });
+                _loggingRepository.Commit();
+            }
+
+            _result = new ObjectResult(_removeResult);
+            return _result;
         }
 
         [HttpGet]

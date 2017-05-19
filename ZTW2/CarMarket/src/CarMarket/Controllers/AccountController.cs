@@ -28,6 +28,7 @@ namespace CarMarket.Controllers
         {
             _membershipService = membershipService;
             _userRepository = userRepository;
+            
             _loggingRepository = _errorRepository;
         }
 
@@ -86,6 +87,8 @@ namespace CarMarket.Controllers
             _result = new ObjectResult(_authenticationResult);
             return _result;
         }
+
+        
 
         [HttpPost("logout")]
         public async Task<IActionResult> Logout()
