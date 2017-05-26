@@ -7,8 +7,7 @@ namespace CarMarket.Infrastructure
 {
     public class CarMarketContext : DbContext
     {
-        public DbSet<Photo> Photos { get; set; }
-        public DbSet<Album> Albums { get; set; }
+       
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
@@ -28,14 +27,7 @@ namespace CarMarket.Infrastructure
                 entity.Relational().TableName = entity.DisplayName();
             }
 
-            // Photos
-            modelBuilder.Entity<Photo>().Property(p => p.Title).HasMaxLength(100);
-            modelBuilder.Entity<Photo>().Property(p => p.AlbumId).IsRequired();
-
-            // Album
-            modelBuilder.Entity<Album>().Property(a => a.Title).HasMaxLength(100);
-            modelBuilder.Entity<Album>().Property(a => a.Description).HasMaxLength(500);
-            modelBuilder.Entity<Album>().HasMany(a => a.Photos).WithOne(p => p.Album);
+            
 
             // User
             modelBuilder.Entity<User>().Property(u => u.Username).IsRequired().HasMaxLength(100);

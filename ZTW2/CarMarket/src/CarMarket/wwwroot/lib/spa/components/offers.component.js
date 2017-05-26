@@ -126,7 +126,6 @@ var OffersComponent = (function (_super) {
         var _this = this;
         var _removeResult = new operationResult_1.OperationResult(false, '');
         this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?', function () {
-            debugger;
             _this.offerService.delete(id)
                 .subscribe(function (res) {
                 _removeResult.Succeeded = res.Succeeded;
@@ -134,7 +133,7 @@ var OffersComponent = (function (_super) {
             }, function (error) { return console.error('Error: ' + error); }, function () {
                 if (_removeResult.Succeeded) {
                     _this.notificationService.printSuccessMessage('Oferta pomyślnie usunięta!');
-                    _this.getAlbums();
+                    _this.ngOnInit();
                 }
                 else {
                     _this.notificationService.printErrorMessage('Usuwanie zakończone niepowodzeniem!');
@@ -144,6 +143,7 @@ var OffersComponent = (function (_super) {
     };
     OffersComponent.prototype.getAlbums = function () {
         var _this = this;
+        debugger;
         this.offerService.getWithoutPages()
             .subscribe(function (res) {
             var data = res.json();

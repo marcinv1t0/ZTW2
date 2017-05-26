@@ -26,13 +26,10 @@ var ng2_charts_1 = require("ng2-charts/ng2-charts");
 var ng2_translate_1 = require("ng2-translate");
 var account_module_1 = require("./components/account/account.module");
 var app_component_1 = require("./app.component");
-var album_photos_component_1 = require("./components/album-photos.component");
 var home_component_1 = require("./components/home.component");
 var newoffer_component_1 = require("./components/newoffer.component");
 var offers_component_1 = require("./components/offers.component");
 var offer_component_1 = require("./components/offer.component");
-var photos_component_1 = require("./components/photos.component");
-var albums_component_1 = require("./components/albums.component");
 var statistics_component_1 = require("./components/statistics.component");
 var myoffers_component_1 = require("./components/myoffers.component");
 var updateoffer_component_1 = require("./components/updateoffer.component");
@@ -74,7 +71,7 @@ AppModule = __decorate([
                 deps: [http_1.Http]
             })
         ],
-        declarations: [app_component_1.AppComponent, album_photos_component_1.AlbumPhotosComponent, home_component_1.HomeComponent, photos_component_1.PhotosComponent, updateoffer_component_1.UpdateOfferComponent, myoffers_component_1.MyOffersComponent, statistics_component_1.StatisticsComponent, albums_component_1.AlbumsComponent, newoffer_component_1.NewOfferComponent, offers_component_1.OffersComponent, offer_component_1.OfferComponent, admin_component_1.AdminComponent],
+        declarations: [app_component_1.AppComponent, home_component_1.HomeComponent, updateoffer_component_1.UpdateOfferComponent, myoffers_component_1.MyOffersComponent, statistics_component_1.StatisticsComponent, newoffer_component_1.NewOfferComponent, offers_component_1.OffersComponent, offer_component_1.OfferComponent, admin_component_1.AdminComponent],
         providers: [data_service_1.DataService, offer_service_1.OfferService, membership_service_1.MembershipService, utility_service_1.UtilityService, notification_service_1.NotificationService,
             { provide: common_1.LocationStrategy, useClass: common_1.HashLocationStrategy },
             { provide: http_2.RequestOptions, useClass: AppBaseRequestOptions }],

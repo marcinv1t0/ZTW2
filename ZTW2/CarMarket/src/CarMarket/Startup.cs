@@ -60,8 +60,6 @@ namespace CarMarket
             });
 
             // Repositories
-            services.AddScoped<IPhotoRepository, PhotoRepository>();
-            services.AddScoped<IAlbumRepository, AlbumRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IUserRoleRepository, UserRoleRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();

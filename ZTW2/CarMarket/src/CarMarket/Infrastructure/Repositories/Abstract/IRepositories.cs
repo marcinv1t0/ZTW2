@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace CarMarket.Infrastructure.Repositories
 {
-    public interface IAlbumRepository : IEntityBaseRepository<Album> { }
+   
 
     public interface ILoggingRepository : IEntityBaseRepository<Error> { }
 
-    public interface IPhotoRepository : IEntityBaseRepository<Photo> { }
+    
 
     public interface IRoleRepository : IEntityBaseRepository<Role> { }
 

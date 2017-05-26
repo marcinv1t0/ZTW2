@@ -137,7 +137,7 @@ export class OffersComponent extends Paginated implements OnInit {
 
         this.notificationService.printConfirmationDialog('Na pewno chcesz usunąć ofertę?',
             () => {
-                debugger;
+               
                 this.offerService.delete(id)
                     .subscribe(res => {
                         _removeResult.Succeeded = res.Succeeded;
@@ -147,7 +147,8 @@ export class OffersComponent extends Paginated implements OnInit {
                     () => {
                         if (_removeResult.Succeeded) {
                             this.notificationService.printSuccessMessage('Oferta pomyślnie usunięta!');
-                            this.getAlbums();
+                           
+                            this.ngOnInit();
                         }
                         else {
                             this.notificationService.printErrorMessage('Usuwanie zakończone niepowodzeniem!');
@@ -157,6 +158,7 @@ export class OffersComponent extends Paginated implements OnInit {
     }
 
     getAlbums(): void {
+        debugger;
         this.offerService.getWithoutPages()
             .subscribe(res => {
                 var data: any = res.json();

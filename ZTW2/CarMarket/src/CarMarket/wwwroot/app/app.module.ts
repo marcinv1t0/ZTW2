@@ -9,13 +9,10 @@ import {TranslateModule, TranslateLoader, TranslateStaticLoader} from 'ng2-trans
 
 import { AccountModule } from './components/account/account.module';
 import { AppComponent }  from './app.component';
-import { AlbumPhotosComponent } from './components/album-photos.component';
 import { HomeComponent } from './components/home.component';
 import { NewOfferComponent } from './components/newoffer.component';
 import { OffersComponent } from './components/offers.component';
 import { OfferComponent } from './components/offer.component';
-import { PhotosComponent } from './components/photos.component';
-import { AlbumsComponent } from './components/albums.component';
 import { StatisticsComponent } from './components/statistics.component';
 import { MyOffersComponent } from './components/myoffers.component';
 import { UpdateOfferComponent } from './components/updateoffer.component';
@@ -52,7 +49,7 @@ class AppBaseRequestOptions extends BaseRequestOptions {
             deps: [Http]
         })
     ],
-    declarations: [AppComponent, AlbumPhotosComponent, HomeComponent, PhotosComponent, UpdateOfferComponent, MyOffersComponent, StatisticsComponent, AlbumsComponent, NewOfferComponent, OffersComponent, OfferComponent, AdminComponent],
+    declarations: [AppComponent,  HomeComponent, UpdateOfferComponent, MyOffersComponent, StatisticsComponent, NewOfferComponent, OffersComponent, OfferComponent, AdminComponent],
     providers: [DataService, OfferService, MembershipService, UtilityService, NotificationService,
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         { provide: RequestOptions, useClass: AppBaseRequestOptions }],
